@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Edit User</title>
+</head>
+<body>
+    <div class="frame">
+        <div class="header">
+            <div class="header-title">
+                DKL Bookstore
+            </div>
+            <div>
+				<a style="padding-right:15px" href="/users.html">Users</a>
+                <a style="padding-right:15px" href="/books.html">Books</a>
+                <a href="/">Sign Out</a>
+            </div>
+        </div>
+        
+        
+        <div class="body">
+            <a href="/account.html">< Back</a><br></br>
+            <form action="/editUser">
+                <h1>Edit User</h1>
+                <p>
+                    <input type="text" value="First name">
+                </p>
+                <p>
+                    <input type="text" value="Last Name">
+                </p>
+                <p>
+                    <input type="text" value="email@email.com">
+                </p>
+				 <p>
+                    <input type="password" placeholder="Password">
+                </p>
+				<p>
+                    <input type="password" placeholder="New Password">
+                </p>
+                <p>
+                    <input type="password" placeholder="Repeat password">
+                </p>
+
+                <input type="submit" value="Save">
+				<input type="submit" value="Delete User">
+				<input type="submit" value="Cancel">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
