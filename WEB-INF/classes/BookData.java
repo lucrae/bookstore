@@ -54,4 +54,32 @@ public class BookData {
         }
         return vec;
     }
+
+    public static Vector<BookData> getLatestBooks(Connection connection) {
+        Vector<BookData> vec = new Vector<BookData>();
+        String sql = "SELECT TOP 5 * FROM Books ORDER BY ID DESC";
+        System.out.println("getLatestBooks: " + sql);
+        try {
+            Statement statement=connection.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+            while(result.next()) {
+                BookData book = new BookData(
+                    Integer.parseInt(result.getString("ID")),
+                    result.getString("title"),
+                    result.getString("author"),
+                    Integer.parseInt(result.getString("publish_year")),
+                    result.getString("blurb"),
+                    result.getString("genre"),
+                    result.getString("cover_image"),
+                    Float.parseFloat(result.getString("price")),
+                    Integer.parseInt(result.getString("stock"))
+                );
+                vec.addElement(book);
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error in getLatestBooks: " + sql + " Exception: " + e);
+        }
+        return vec;
+    }
 }
