@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app>
+
+    <!-- SERVLETS (CLASSES) -->
+
+    <servlet>
+        <servlet-name>BookList</servlet-name>
+        <servlet-class>BookList</servlet-class>
+    </servlet>
+
+    <!-- SERVLET MAPPINGS -->
+
+    <servlet-mapping>
+        <servlet-name>BookList</servlet-name>
+        <url-pattern>/BookList</url-pattern>
+    </servlet-mapping>
+    
+</web-app>
