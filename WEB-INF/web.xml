@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <web-app>
 
-    <!-- SERVLETS (CLASSES) -->
+    <!-- ======== -->
+    <!-- SERVLETS -->
+    <!-- ======== -->
 
     <servlet>
         <servlet-name>BookList</servlet-name>
@@ -18,7 +20,16 @@
         <servlet-class>UserEdit</servlet-class>
     </servlet>
 
+    <!-- Pages -->
+
+    <servlet>
+        <servlet-name>PageStart</servlet-name>
+        <servlet-class>PageStart</servlet-class>
+    </servlet>
+
+    <!-- ================ -->
     <!-- SERVLET MAPPINGS -->
+    <!-- ================ -->
 
     <servlet-mapping>
         <servlet-name>BookList</servlet-name>
@@ -33,6 +44,13 @@
     <servlet-mapping>
         <servlet-name>UserEdit</servlet-name>
         <url-pattern>/UserEdit</url-pattern>
+    </servlet-mapping>
+
+    <!-- Pages -->
+
+    <servlet-mapping>
+        <servlet-name>PageStart</servlet-name>
+        <url-pattern>/Start</url-pattern>
     </servlet-mapping>
     
 </web-app>
