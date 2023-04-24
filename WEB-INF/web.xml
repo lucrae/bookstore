@@ -6,6 +6,9 @@
     <servlet>
         <servlet-name>BookList</servlet-name>
         <servlet-class>BookList</servlet-class>
+
+        <servlet-name>UserList</servlet-name>
+        <servlet-class>UserList</servlet-class>
     </servlet>
 
     <!-- SERVLET MAPPINGS -->
@@ -13,6 +16,9 @@
     <servlet-mapping>
         <servlet-name>BookList</servlet-name>
         <url-pattern>/BookList</url-pattern>
+
+        <servlet-name>UserList</servlet-name>
+        <url-pattern>/UserList</url-pattern>
     </servlet-mapping>
     
 </web-app>
