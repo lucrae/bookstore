@@ -1,6 +1,7 @@
 import java.util.Vector;
 import java.sql.Connection;
 import java.sql.Statement;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -53,5 +54,62 @@ public class UserData {
             System.out.println("Error in getUserList: " + sql + " Exception: " + e);
         }
         return vec;
+    }
+
+    public static UserData getUser(Connection connection, String idStr) {
+        String sql = "Select * FROM Accounts";
+        sql += " WHERE ID=?";
+        System.out.println("getUser: " + sql);
+        UserData user = null;
+        try {
+            PreparedStatement pstmt = connection.prepareStatement(sql);
+            pstmt.setString(1, idStr);
+            ResultSet result = pstmt.executeQuery();
+            if(result.next()) {
+                user = new UserData(
+                    Integer.parseInt(result.getString("ID")),
+                    result.getString("email"),
+                    result.getString("first_name"),
+                    result.getString("last_name"),
+                    result.getString("street"),
+                    Integer.parseInt(result.getString("postal_code")),
+                    result.getString("city"),
+                    result.getString("password"),
+                    Boolean.parseBoolean(result.getString("is_admin"))
+                );
+            }
+            result.close();
+            pstmt.close();
+        } catch(SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error in getUser: " + sql + " Exception: " + e);
+        }
+        return user;
+    }
+
+    public static int updateUser(Connection connection, UserData user) {
+        String sql ="UPDATE Accounts "
+            + "SET email = ?, first_name = ?, last_name = ?, street = ?, postal_code = ?, city = ?, password = ?, is_admin = ?"
+            + " WHERE ID = ?";
+        System.out.println("updateUser: " + sql);
+        int n = 0;
+        try {
+            PreparedStatement stmtUpdate= connection.prepareStatement(sql);
+            stmtUpdate.setString(1,user.email);
+            stmtUpdate.setString(2,user.first_name);
+            stmtUpdate.setString(3,user.last_name);
+            stmtUpdate.setString(4,user.street);
+            stmtUpdate.setInt(5,user.postal_code);
+            stmtUpdate.setString(6,user.city);
+            stmtUpdate.setString(7,user.password);
+            stmtUpdate.setBoolean(8,user.is_admin);
+            stmtUpdate.setInt(9,user.ID);
+            n = stmtUpdate.executeUpdate();
+            stmtUpdate.close();
+        } catch(SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error in updateUser: " + sql + " Exception: " + e);
+        }
+        return n;
     }
 }

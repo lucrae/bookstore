@@ -36,6 +36,7 @@ public class UserList extends HttpServlet {
                 toClient.println("<td>" + user.email + " </td>");
                 toClient.println("<td>" + user.first_name + " </td>");
                 toClient.println("<td><img src='" + user.street + "'> </td>");
+                toClient.println("<td><a href='UserEdit?id=" + user.ID + "'>Edit</a></td>");
                 toClient.println("</tr>");
         }
 
