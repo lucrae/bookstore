@@ -21,9 +21,10 @@ public class UserList extends HttpServlet {
         toClient.println("<table border='1'>");
         toClient.println("<tr>");
         toClient.println("<td>ID</td>");
-        toClient.println("<td>title</td>");
-        toClient.println("<td>author</td>");
-        toClient.println("<td>cover_image</td>");
+        toClient.println("<td>email</td>");
+        toClient.println("<td>first name</td>");
+        toClient.println("<td>street</td>");
+        toClient.println("<td>edit</td>");
         toClient.println("</tr>");
 
         Vector<UserData> userList = UserData.getUserList(connection);
@@ -35,7 +36,7 @@ public class UserList extends HttpServlet {
                 toClient.println("<td>" + user.ID + " </td>");
                 toClient.println("<td>" + user.email + " </td>");
                 toClient.println("<td>" + user.first_name + " </td>");
-                toClient.println("<td><img src='" + user.street + "'> </td>");
+                toClient.println("<td>" + user.street + "</td>");
                 toClient.println("<td><a href='UserEdit?id=" + user.ID + "'>Edit</a></td>");
                 toClient.println("</tr>");
         }
