@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>New Book</title>
+</head>
+<body>
+    <div class="frame">
+        <div class="header">
+            <div class="header-title">
+                DKL Bookstore (Admin)
+            </div>
+            <div>
+				<a style="padding-right:15px" href="/users.html">Users</a>
+                <a style="padding-right:15px" href="/books.html">Books</a>
+                <a href="/">Sign Out</a>
+            </div>
+        </div>
+        
+        
+        <div class="body">
+            <a href="/books.html">Back</a><br></br>
+            <form action="/books.html">
+                <h1>Add new book</h1>
+                <p>
+                    <input type="text" placeholder="Title">
+                </p>
+                <p>
+                    <input type="text" placeholder="Author">
+                </p>
+                <p>
+                    <input type="text" placeholder="Year">
+                </p>
+                <p>
+                    Available books: <input style="width:5ch" type="number">
+                </p>
+				<p>
+                     <input type="radio" name="Genre" placeholder="Action" checked>Action
+					 <input type="radio" name="Genre" placeholder="Horror">Horror
+					 <input type="radio" name="Genre" placeholder="Romance">Romance
+					 <input type="radio" name="Genre" placeholder="Thriller">Thriller
+                </p>
+                <p>
+                    <textarea name="Summary" rows="4" cols="50">Summary</textarea>
+                </p>
+                <p>
+                    <input type="text" placeholder="Cover Image">
+					<input type="button" value="Browse">
+                </p>
+
+                <input type="submit" value="Add Book">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

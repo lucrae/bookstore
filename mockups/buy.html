@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Buy</title>
+</head>
+<style>
+        .card {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        max-width: 500px;
+        margin: 0 auto;
+        margin-top: 50px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    input[type="text"], input[type="number"], select {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        margin-bottom: 15px;
+        font-size: 16px;
+    }
+
+    .expiry-date-group {
+        display: flex;
+        align-items: center;
+    }
+
+    .expiry-date-group label {
+        margin-bottom: 0;
+    }
+
+    .expiry-date-group input[type="number"] {
+        width: 48%;
+        margin-right: 2%;
+    }
+</style>
+<body>
+    <div class="frame frame-small">
+        <div class="header">
+            <div class="header-title">
+                DKL Bookstore
+            </div>
+            <div>
+                <a href="/account.html">Account</a>
+            </div>
+        </div>
+        <div class="body">
+            <h1>Card Details</h1>
+            <form action="/account.html">
+                <label for="card-number">Card Number</label>
+                <input type="text" id="card-number" name="card-number" value="1234 1234 1234 1234" required>
+
+                <label for="cardholder-name">Cardholder Name</label>
+                <input type="text" id="cardholder-name" name="cardholder-name" value="Buyer Buyerson" required>
+
+                <label for="expiry-date-group">Expiry Date</label>
+                <div class="expiry-date-group">
+                    <input style="width: 60px;" type="number" id="expiry-month" name="expiry-month" min="1" max="12" value="4" required>
+                    
+                    <input style="width: 60px;" type="number" id="expiry-year" name="expiry-year" min="22" max="99" value="24" required>
+                </div>
+
+                <label for="cvv">CVV</label>
+                <input style="width:10ch"type="number" id="cvv" name="cvv" min="100" max="999" value="123" required>
+                <br>
+                <input style="background-color:#4CAF50;color: white;" type="submit" value="Submit">	
+            </form>
+            <form action="/book.html">
+                <input style="background-color: #af4c4c" type="submit" value="Cancel">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
