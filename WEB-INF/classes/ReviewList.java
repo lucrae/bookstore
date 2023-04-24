@@ -5,7 +5,7 @@ import javax.servlet.http.*;
 import java.sql.Connection;
 
 @SuppressWarnings("serial")
-public class BookList extends HttpServlet {
+public class ReviewList extends HttpServlet {
     Connection connection;
 
     public void init(ServletConfig config) throws ServletException {
@@ -21,21 +21,24 @@ public class BookList extends HttpServlet {
         toClient.println("<table border='1'>");
         toClient.println("<tr>");
         toClient.println("<td>ID</td>");
-        toClient.println("<td>title</td>");
-        toClient.println("<td>author</td>");
-        toClient.println("<td>cover_image</td>");
+        toClient.println("<td>account</td>");
+        toClient.println("<td>book</td>");
+        toClient.println("<td>rating</td>");
+        toClient.println("<td>description</td>");
         toClient.println("</tr>");
 
-        Vector<BookData> bookList = BookData.getBookList(connection); 
+        Vector<ReviewData> reviewList = ReviewData.getReviews(connection, 1); 
 
 
-        for(int i=0; i< bookList.size(); i++){
-                BookData book = bookList.elementAt(i);
+        for(int i=0; i< reviewList.size(); i++){
+                ReviewData review = reviewList.elementAt(i);
                 toClient.println("<tr>");
-                toClient.println("<td>" + book.ID + " </td>");
-                toClient.println("<td>" + book.title + " </td>");
-                toClient.println("<td>" + book.author + " </td>");
-                toClient.println("<td><img src='" + book.cover_image + "'> </td>");
+                toClient.println("<td>" + review.ID + " </td>");
+                toClient.println("<td>" + review.account_id + " </td>");
+                toClient.println("<td>" + review.book_id + " </td>");
+                toClient.println("<td>" + review.rating + " </td>");
+                toClient.println("<td>" + review.description + " </td>");
+                
                 toClient.println("</tr>");
         }
 

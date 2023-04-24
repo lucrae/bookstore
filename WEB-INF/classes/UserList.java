@@ -27,9 +27,15 @@ public class UserList extends HttpServlet {
         toClient.println("<td>edit</td>");
         toClient.println("</tr>");
 
+    /*    
+        int newId = userList.size() + 1;
+        UserData newUser = new UserData(newId, "'abc@hotmail.com'", "'John'", "'Doe'", "'Cali St'", 789, "'West Side'", "'pass88'", false);
+        int nAffected = UserData.registerUser(connection, newUser);
+        userList = UserData.getUserList(connection);
+    */    
+    
         Vector<UserData> userList = UserData.getUserList(connection);
-
-
+     
         for(int i=0; i< userList.size(); i++){
                 UserData user = userList.elementAt(i);
                 toClient.println("<tr>");
@@ -42,7 +48,6 @@ public class UserList extends HttpServlet {
         }
 
         toClient.println("</table>");
-
         toClient.close();
     }
 }

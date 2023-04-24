@@ -112,4 +112,72 @@ public class UserData {
         }
         return n;
     }
+
+    public static int registerUser(Connection connection, UserData user) {
+        String sql ="INSERT INTO Accounts (ID, email, first_name, last_name, street, postal_code, city, password, is_admin)"
+            + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        System.out.println("registerUser: " + sql);
+        int n = 0;
+        try {
+           PreparedStatement stmtUpdate= connection.prepareStatement(sql);
+           stmtUpdate.setInt(1,user.ID);
+            stmtUpdate.setString(2,user.email);
+            stmtUpdate.setString(3,user.first_name);
+            stmtUpdate.setString(4,user.last_name);
+            stmtUpdate.setString(5,user.street);
+            stmtUpdate.setInt(6,user.postal_code);
+            stmtUpdate.setString(7,user.city);
+            stmtUpdate.setString(8,user.password);
+            stmtUpdate.setBoolean(9,user.is_admin);
+            n = stmtUpdate.executeUpdate();
+            stmtUpdate.close();
+        } catch(SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error in registerUser: " + sql + " Exception: " + e);
+        }
+        return n;
+    }
+
+    public static Boolean loginUser(Connection connection, String email, String password){
+
+        UserData myUser = getUserByEmail(connection, email);
+        
+        if (myUser != null && myUser.password.equals(password)){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
+    public static UserData getUserByEmail(Connection connection, String email) {
+        String sql = "Select * FROM Accounts";
+        sql += " WHERE email=?";
+        System.out.println("getUserByEmail: " + sql);
+        UserData user = null;
+        try {
+            PreparedStatement pstmt = connection.prepareStatement(sql);
+            pstmt.setString(1, email);
+            ResultSet result = pstmt.executeQuery();
+            if(result.next()) {
+                user = new UserData(
+                    Integer.parseInt(result.getString("ID")),
+                    result.getString("email"),
+                    result.getString("first_name"),
+                    result.getString("last_name"),
+                    result.getString("street"),
+                    Integer.parseInt(result.getString("postal_code")),
+                    result.getString("city"),
+                    result.getString("password"),
+                    Boolean.parseBoolean(result.getString("is_admin"))
+                );
+            }
+            result.close();
+            pstmt.close();
+        } catch(SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error in getUserByEmail: " + sql + " Exception: " + e);
+        }
+        return user;
+    }
 }
