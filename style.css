@@ -114,3 +114,22 @@ body {
     background-color: #ddd;
     padding: 16px;
 }
+
+/* Users */
+
+.user-table {
+    border: 4px #000000;
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 0px auto 10px;
+    width: 100%;
+}
+
+td {
+    height: 1.5em;
+    padding-left: 15px;
+    color: #000000;
+    border: 3px #000000;
+    border-radius: 4px;
+}

@@ -37,6 +37,11 @@
         <servlet-class>PageAdmin</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>PageAdminUsers</servlet-name>
+        <servlet-class>PageAdminUsers</servlet-class>
+    </servlet>
+
     <!-- ================ -->
     <!-- SERVLET MAPPINGS -->
     <!-- ================ -->
@@ -71,6 +76,11 @@
     <servlet-mapping>
         <servlet-name>PageAdmin</servlet-name>
         <url-pattern>/Admin</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>PageAdminUsers</servlet-name>
+        <url-pattern>/AdminUsers</url-pattern>
     </servlet-mapping>
     
 </web-app>
