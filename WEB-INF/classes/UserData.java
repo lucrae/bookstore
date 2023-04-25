@@ -87,6 +87,35 @@ public class UserData {
         return user;
     }
 
+    public static Vector<UserData> getUserSearch(Connection connection, String search) {
+        Vector<UserData> vec = new Vector<UserData>();
+        String sql = "SELECT * FROM Accounts WHERE email LIKE '%" + search + "%'";
+        System.out.println("getUserSearch: " + sql);
+
+        try {
+            Statement statement=connection.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+            while(result.next()) {
+                UserData user = new UserData(
+                    Integer.parseInt(result.getString("ID")),
+                    result.getString("email"),
+                    result.getString("first_name"),
+                    result.getString("last_name"),
+                    result.getString("street"),
+                    Integer.parseInt(result.getString("postal_code")),
+                    result.getString("city"),
+                    result.getString("password"),
+                    Boolean.parseBoolean(result.getString("is_admin"))
+                );
+                vec.addElement(user);
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error in getUserSearch: " + sql + " Exception: " + e);
+        }
+        return vec;
+    }
+
     public static int updateUser(Connection connection, UserData user) {
         String sql ="UPDATE Accounts "
             + "SET email = ?, first_name = ?, last_name = ?, street = ?, postal_code = ?, city = ?, password = ?, is_admin = ?"

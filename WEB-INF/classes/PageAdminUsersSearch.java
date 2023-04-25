@@ -5,7 +5,7 @@ import javax.servlet.http.*;
 import java.sql.Connection;
 
 @SuppressWarnings("serial")
-public class PageAdminUsers extends HttpServlet {
+public class PageAdminUsersSearch extends HttpServlet {
     Connection connection;
 
     public void init(ServletConfig config) throws ServletException {
@@ -16,6 +16,7 @@ public class PageAdminUsers extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException  {
         res.setContentType("text/html");
         PrintWriter toClient = res.getWriter();
+        String idStr = req.getParameter("search");
         
         toClient.println(Utils.header("Users"));
 
@@ -32,7 +33,7 @@ public class PageAdminUsers extends HttpServlet {
 
         toClient.println("<div class='left-right'>");
         toClient.println("<div><h1>List of Users</h1>");
-        toClient.println("<form action='AdminUsersSearch' method='GET'><input type='text' placeholder='Search User' id='search' name='search'><input type='submit' value='Search'></form>");
+        toClient.println("<form action='AdminUserSearch' method='GET'><input type='text' placeholder='Search User' id='search' name='search'><input type='submit' value='Search'></form>");
         toClient.println("</div>");
         toClient.println("</div>");
 
@@ -58,10 +59,10 @@ public class PageAdminUsers extends HttpServlet {
         userList = UserData.getUserList(connection);
     */    
     
-        Vector<UserData> userList = UserData.getUserList(connection);
+        Vector<UserData> userSearch = UserData.getUserSearch(connection, idStr);
      
-        for(int i=0; i< userList.size(); i++){
-                UserData user = userList.elementAt(i);
+        for(int i=0; i< userSearch.size(); i++){
+                UserData user = userSearch.elementAt(i);
                 toClient.println("<div>");
                 toClient.println("<tr>");
                 toClient.println("<td>" + user.ID + " </td>");
