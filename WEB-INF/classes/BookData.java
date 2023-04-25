@@ -253,5 +253,36 @@ public class BookData {
         }
         return book;
     }
+
+    public static Vector<BookData> getByGenreAndSearch(Connection connection, String genre, String search) {
+        Vector<BookData> vec = new Vector<BookData>();
+        String sql = "SELECT * FROM books WHERE title IN("+ search + ") OR author IN("+ search + ") AND genre=" + genre;
+
+        System.out.println("getByGenreAndSearch: " + sql);
+
+        try {
+            Statement statement=connection.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+            while(result.next()) {
+                BookData book = new BookData(
+                    Integer.parseInt(result.getString("ID")),
+                    result.getString("title"),
+                    result.getString("author"),
+                    Integer.parseInt(result.getString("publish_year")),
+                    result.getString("blurb"),
+                    result.getString("genre"),
+                    result.getString("cover_image"),
+                    Float.parseFloat(result.getString("price")),
+                    Integer.parseInt(result.getString("stock"))
+                );
+                vec.addElement(book);
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error in getByGenre: " + sql + " Exception: " + e);
+        }
+        return vec;
+    }
+    
    
 }
