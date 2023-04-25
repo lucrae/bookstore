@@ -32,6 +32,11 @@
         <servlet-class>PageStart</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>PageAdmin</servlet-name>
+        <servlet-class>PageAdmin</servlet-class>
+    </servlet>
+
     <!-- ================ -->
     <!-- SERVLET MAPPINGS -->
     <!-- ================ -->
@@ -61,6 +66,11 @@
     <servlet-mapping>
         <servlet-name>PageStart</servlet-name>
         <url-pattern>/Start</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>PageAdmin</servlet-name>
+        <url-pattern>/Admin</url-pattern>
     </servlet-mapping>
     
 </web-app>

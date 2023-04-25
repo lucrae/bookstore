@@ -172,5 +172,86 @@ public class BookData {
         return vec;
     }
 
+    public static int addBook(Connection connection, BookData book) {
+        String sql ="INSERT INTO Books"
+            + "(author, title, publish_year, blurb, genre, cover_image, price, stock) "
+            + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        System.out.println("addBook: " + sql);
+        int n = 0;
+        try {
+            PreparedStatement stmtUpdate= connection.prepareStatement(sql);
+            stmtUpdate.setString(1,book.title);
+            stmtUpdate.setString(2,book.author);
+            stmtUpdate.setInt(3,book.publish_year);
+            stmtUpdate.setString(4,book.blurb);
+            stmtUpdate.setString(5,book.genre);
+            stmtUpdate.setString(6,book.cover_image);
+            stmtUpdate.setFloat(7,book.price);
+            stmtUpdate.setInt(8,book.stock);
+            n = stmtUpdate.executeUpdate();
+            stmtUpdate.close();
+        } catch(SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error in addBook: " + sql + " Exception: " + e);
+        }
+        return n;
+    }
+
+    public static int updateBook(Connection connection, BookData book) {
+        String sql ="UPDATE Books "
+            + "SET author = ?, title = ?, publish_year = ?, blurb = ?, genre = ?, cover_image = ?, price = ?, stock = ?"
+            + " WHERE ID = ?";
+        System.out.println("updateUser: " + sql);
+        int n = 0;
+        try {
+            PreparedStatement stmtUpdate= connection.prepareStatement(sql);
+            stmtUpdate.setString(1,book.title);
+            stmtUpdate.setString(2,book.author);
+            stmtUpdate.setInt(3,book.publish_year);
+            stmtUpdate.setString(4,book.blurb);
+            stmtUpdate.setString(5,book.genre);
+            stmtUpdate.setString(6,book.cover_image);
+            stmtUpdate.setFloat(7,book.price);
+            stmtUpdate.setInt(8,book.stock);
+            stmtUpdate.setInt(9,book.ID);
+            n = stmtUpdate.executeUpdate();
+            stmtUpdate.close();
+        } catch(SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error in updateBook: " + sql + " Exception: " + e);
+        }
+        return n;
+    }
+
+    public static BookData getBook(Connection connection, String idStr) {
+        String sql = "Select * FROM Books";
+        sql += " WHERE ID=?";
+        System.out.println("getBook: " + sql);
+        BookData book = null;
+        try {
+            PreparedStatement pstmt = connection.prepareStatement(sql);
+            pstmt.setString(1, idStr);
+            ResultSet result = pstmt.executeQuery();
+            if(result.next()) {
+                book = new BookData(
+                    Integer.parseInt(result.getString("ID")),
+                    result.getString("title"),
+                    result.getString("author"),
+                    Integer.parseInt(result.getString("publish_year")),
+                    result.getString("blurb"),
+                    result.getString("genre"),
+                    result.getString("cover_image"),
+                    Float.parseFloat(result.getString("price")),
+                    Integer.parseInt(result.getString("stock"))
+                );
+            }
+            result.close();
+            pstmt.close();
+        } catch(SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error in getBook: " + sql + " Exception: " + e);
+        }
+        return book;
+    }
    
 }
