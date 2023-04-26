@@ -29,7 +29,7 @@ public class PageLogin extends HttpServlet {
         toClient.println("<p><input type='password'  placeholder='Password' name='password'></p>");
         toClient.println("<input type='submit' value='Log in'>");
         toClient.println("</form>");
-        toClient.println("<p>Need an account? <a href='/register.html'>Make an account!</a></p>");
+        toClient.println("<p>Need an account? <a href='Register'>Make an account!</a></p>");
         toClient.println("</div>");
 
 

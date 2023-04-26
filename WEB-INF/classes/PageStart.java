@@ -35,8 +35,9 @@ public class PageStart extends HttpServlet {
 
         toClient.println("</div>");
 
-        toClient.println("<h2>Create an account to browse and buy!</h2");
-        toClient.println("<form action='/Register'><input type='submit' value='Create an account' /></form>");
+        toClient.println("<h2>Create an account to browse and buy!</h2>");
+   //   toClient.println("<form action='Register' method='post'><input type='submit' value='Create an account'></form>");
+        toClient.println("<p><a href='Register' class='button'>Create an account</a></p>");
         toClient.println("<p>Already have an account? <a href='Login'>Log in</a></p>");
 
         toClient.println(Utils.footer());
