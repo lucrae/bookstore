@@ -37,26 +37,25 @@ public class PageMain extends HttpServlet {
 
         toClient.println("<h2>Search books</h2>");
         toClient.println("<form action='FilterBooks'>");
-        toClient.println("<input type='text' placeholder='Author/title (optional)' name='author_or_title'> ");
+        toClient.println("<input type='text' placeholder='Author/title (optional)' name='author_or_title' value=''> ");
         toClient.println("<select name='genre'>");
         toClient.println("<option value=''>Genre (optional)</option>");
-        toClient.println("<option value='horror'>Horror</option>");
-        toClient.println("<option value='romance'>Romance</option>");
-        toClient.println("<option value='science-fiction'>Science-fiction</option>");
-        toClient.println("<option value='young-adult'>Young Adult</option>");
-        toClient.println("<option value='children'>Children</option>");
+        toClient.println("<option value='Horror'>Horror</option>");
+        toClient.println("<option value='Romance'>Romance</option>");
+        toClient.println("<option value='Science Fiction'>Science-fiction</option>");
+        toClient.println("<option value='Young Adult'>Young Adult</option>");
+        toClient.println("<option value='Children'>Children</option>");
         toClient.println("</select>");
 
         toClient.println("<select name='sortFilter'>");
-        toClient.println(" <option value='sortRating'>Sort by rating</option>");
-        toClient.println("<option value='sortYear'>Sort by year</option>");
+        toClient.println("<option value=''>Order By (optional)</option>");
+        toClient.println("<option value='rating'>Sort by rating</option>");
+        toClient.println("<option value=publish_year>Sort by year</option>");
         toClient.println(" </select>");
         
         toClient.println("<input type='submit' value='Search'>");
         toClient.println(" </form>");
-   
 
-        toClient.println(Utils.footer());
-        toClient.close();
+        
     }
 }

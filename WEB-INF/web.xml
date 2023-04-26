@@ -116,6 +116,7 @@
         <url-pattern>/RegisterUser</url-pattern>
     </servlet-mapping>
 
+
     <!-- Pages -->
 
     <servlet-mapping>

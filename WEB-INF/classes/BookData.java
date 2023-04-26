@@ -138,39 +138,11 @@ public class BookData {
             }
         } catch(SQLException e) {
             e.printStackTrace();
-            System.out.println("Error in getByGenre: " + sql + " Exception: " + e);
+            System.out.println("Error in getBySearch: " + sql + " Exception: " + e);
         }
         return vec;
     }
 
-    public static Vector<BookData> getByYear(Connection connection) {
-        Vector<BookData> vec = new Vector<BookData>();
-        String sql = "SELECT * FROM Books ORDER BY publish_year DESC";
-        System.out.println("getByYear: " + sql);
-
-        try {
-            Statement statement=connection.createStatement();
-            ResultSet result = statement.executeQuery(sql);
-            while(result.next()) {
-                BookData book = new BookData(
-                    Integer.parseInt(result.getString("ID")),
-                    result.getString("title"),
-                    result.getString("author"),
-                    Integer.parseInt(result.getString("publish_year")),
-                    result.getString("blurb"),
-                    result.getString("genre"),
-                    result.getString("cover_image"),
-                    Float.parseFloat(result.getString("price")),
-                    Integer.parseInt(result.getString("stock"))
-                );
-                vec.addElement(book);
-            }
-        } catch(SQLException e) {
-            e.printStackTrace();
-            System.out.println("Error in getByYear: " + sql + " Exception: " + e);
-        }
-        return vec;
-    }
 
     public static int addBook(Connection connection, BookData book) {
         String sql ="INSERT INTO Books"
@@ -283,6 +255,181 @@ public class BookData {
         }
         return vec;
     }
+
+    public static Vector<BookData> getBySort(Connection connection, String sortBy) {
+        Vector<BookData> vec = new Vector<BookData>();
+        String sql = "SELECT * FROM Books ORDER BY " + sortBy + " DESC";
+        System.out.println("getBySort: " + sql);
+
+        try {
+            Statement statement=connection.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+            while(result.next()) {
+                BookData book = new BookData(
+                    Integer.parseInt(result.getString("ID")),
+                    result.getString("title"),
+                    result.getString("author"),
+                    Integer.parseInt(result.getString("publish_year")),
+                    result.getString("blurb"),
+                    result.getString("genre"),
+                    result.getString("cover_image"),
+                    Float.parseFloat(result.getString("price")),
+                    Integer.parseInt(result.getString("stock"))
+                );
+                vec.addElement(book);
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error in getByYear: " + sql + " Exception: " + e);
+        }
+        return vec;
+    }
+
+    public static Vector<BookData> getByAll(Connection connection, String genre, String search, String orderBy) {
+        Vector<BookData> vec = new Vector<BookData>();
+        String sql = "SELECT * FROM books WHERE title IN("+ search + ") OR author IN("+ search + ") AND genre=" + genre + " ORDER BY " + orderBy + "DESC";
+
+        System.out.println("getByGenreAndSearch: " + sql);
+
+        try {
+            Statement statement=connection.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+            while(result.next()) {
+                BookData book = new BookData(
+                    Integer.parseInt(result.getString("ID")),
+                    result.getString("title"),
+                    result.getString("author"),
+                    Integer.parseInt(result.getString("publish_year")),
+                    result.getString("blurb"),
+                    result.getString("genre"),
+                    result.getString("cover_image"),
+                    Float.parseFloat(result.getString("price")),
+                    Integer.parseInt(result.getString("stock"))
+                );
+                vec.addElement(book);
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error in getByGenre: " + sql + " Exception: " + e);
+        }
+        return vec;
+    }
+
+      public static Vector<BookData> getByGenreAndSort(Connection connection, String genre, String orderBy) {
+        Vector<BookData> vec = new Vector<BookData>();
+        String sql = "SELECT * FROM Books WHERE genre LIKE " + genre + " ORDER BY " + orderBy + " DESC";
+
+        System.out.println("getByGenreAndSort: " + sql);
+
+        try {
+            Statement statement=connection.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+            while(result.next()) {
+                BookData book = new BookData(
+                    Integer.parseInt(result.getString("ID")),
+                    result.getString("title"),
+                    result.getString("author"),
+                    Integer.parseInt(result.getString("publish_year")),
+                    result.getString("blurb"),
+                    result.getString("genre"),
+                    result.getString("cover_image"),
+                    Float.parseFloat(result.getString("price")),
+                    Integer.parseInt(result.getString("stock"))
+                );
+                vec.addElement(book);
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error in getByGenreAndSort: " + sql + " Exception: " + e);
+        }
+        return vec;
+    }
+
+    public static Vector<BookData> getBySearchAndSort(Connection connection, String text, String sortBy) {
+        Vector<BookData> vec = new Vector<BookData>();
+        String sql = "SELECT * FROM Books WHERE " + text + " IN(title, author) ORDER BY " + sortBy;
+        System.out.println("getBySearch: " + sql);
+
+        try {
+            Statement statement=connection.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+            while(result.next()) {
+                BookData book = new BookData(
+                    Integer.parseInt(result.getString("ID")),
+                    result.getString("title"),
+                    result.getString("author"),
+                    Integer.parseInt(result.getString("publish_year")),
+                    result.getString("blurb"),
+                    result.getString("genre"),
+                    result.getString("cover_image"),
+                    Float.parseFloat(result.getString("price")),
+                    Integer.parseInt(result.getString("stock"))
+                );
+                vec.addElement(book);
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error in getBySearch: " + sql + " Exception: " + e);
+        }
+        return vec;
+    }
+
+
+    public static Vector<BookData> filterCriteria(Connection connection, String author_or_title, String genre, String sortFilter) {
+  
+        if(genre.equals("") && author_or_title.equals("") && sortFilter.equals("")) { //no filter
+            Vector<BookData> bookList = BookData.getBookList(connection); 
+            return bookList;
+        }
+        
+        if(sortFilter.equals("")){
+            if(author_or_title.equals("")){  //genre only
+
+                Vector<BookData> bookList = BookData.getByGenre(connection, genre); 
+                return bookList;
+
+            }else{ // author only
+
+                Vector<BookData> bookList = BookData.getBySearch(connection, "'" + author_or_title + "'"); 
+                return bookList;
+
+             }
+        }else{ //there is an order filter
+
+            if(author_or_title.equals("")){ //if there is no author 
+
+                if(genre.equals("")) {// no author nor genre
+
+                    Vector<BookData> bookList = BookData.getBySort(connection, sortFilter); 
+                    return bookList;
+
+                }else{ // genre + filter
+                
+                    Vector<BookData> bookList = BookData.getByGenreAndSort(connection, "'" + genre + "'", sortFilter); 
+                    return bookList;
+
+                }  
+            }else{// there is author 
+
+                if(genre.equals("")) {
+                    Vector<BookData> bookList = BookData.getBySearchAndSort(connection, "'" + author_or_title + "'", sortFilter);
+                    return bookList;
+                     // author + filter
+
+                }else{ //ALL FILTERS
+
+                    Vector<BookData> bookList = BookData.getByAll(connection, "'" + genre + "'", "'" + author_or_title + "'", "'" + sortFilter + "'"); 
+                    return bookList;
+                }
+
+            }
+            
+            
+        }
+    
+    }
+
+}
     
    
-}
+
