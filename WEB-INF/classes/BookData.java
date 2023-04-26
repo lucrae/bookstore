@@ -347,7 +347,7 @@ public class BookData {
 
     public static Vector<BookData> getBySearchAndSort(Connection connection, String text, String sortBy) {
         Vector<BookData> vec = new Vector<BookData>();
-        String sql = "SELECT * FROM Books WHERE " + text + " IN(title, author) ORDER BY " + sortBy;
+        String sql = "SELECT * FROM Books WHERE " + text + " IN(title, author) ORDER BY " + sortBy + " DESC";
         System.out.println("getBySearch: " + sql);
 
         try {

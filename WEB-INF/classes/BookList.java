@@ -26,7 +26,7 @@ public class BookList extends HttpServlet {
         toClient.println("<td>cover_image</td>");
         toClient.println("</tr>");
 
-        Vector<BookData> bookList = BookData.getByGenreAndSort(connection, "'Young Adult'", "publish_year"); 
+        Vector<BookData> bookList = BookData.getBySearchAndSort(connection, "'Suzanne Collins'", "publish_year"); 
 
 
         for(int i=0; i< bookList.size(); i++){
