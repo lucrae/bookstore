@@ -31,7 +31,8 @@ public class PageRegister extends HttpServlet {
         toClient.println("<p><input type='text' placeholder='Your street name' name='street' required></p>");
         toClient.println("<p><input type='text' placeholder='Postal code' name='postal_code' required></p>");
         toClient.println("<p><input type='text' placeholder='City name' name='city' required></p>");
-        toClient.println("<p><input type='password' placeholder='Password' name='password' required></p>");
+        toClient.println("<p><input type='password' placeholder='Password' name='password' required id='password'>");
+        toClient.println("<button onclick='unhidePassword()'>Show Password</button></p>");
         toClient.println("<p><input type='password' placeholder='Repeat password' name='password2' required></p>");
         toClient.println("<input type='submit' value='Make an account'>");
         toClient.println("</form>");
@@ -39,8 +40,18 @@ public class PageRegister extends HttpServlet {
       
         toClient.println("</div>");
 
-
+        toClient.println("<script type='text/javascript'>");
+        toClient.println("function unhidePassword() {");
+        toClient.println("var passwordInput = document.getElementById('password');");
+        toClient.println("if (passwordInput.type === 'password' ){");
+        toClient.println("passwordInput.type = 'text'");
+        toClient.println("} else {");
+        toClient.println("passwordInput.type = 'password'");
+        toClient.println("}");
+        toClient.println("}");
+        toClient.println("</script>");
         toClient.println(Utils.footer());
         toClient.close();
+
     }
 }
