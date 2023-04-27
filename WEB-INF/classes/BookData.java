@@ -56,6 +56,7 @@ public class BookData {
         return vec;
     }
 
+
     public static Vector<BookData> getLatestBooks(Connection connection) {
         Vector<BookData> vec = new Vector<BookData>();
         String sql = "SELECT TOP 5 * FROM Books ORDER BY ID DESC";
@@ -393,7 +394,7 @@ public class BookData {
                 Vector<BookData> bookList = BookData.getBySearch(connection, "'" + author_or_title + "'"); 
                 return bookList;
 
-             }
+            }
         }else{ //there is an order filter
 
             if(author_or_title.equals("")){ //if there is no author 
@@ -428,6 +429,30 @@ public class BookData {
         }
     
     }
+/*
+
+    public static Integer getBookReviewAverage(Connection connection, BookData myBook){
+
+        Integer bookId = myBook.ID;
+        Integer bookAverage = null;
+
+        String sql = "SELECT AVG(rating) AS Average FROM Reviews WHERE book_id=" + bookId;
+        System.out.println("getBookReviewAverage: " + sql);
+        try {
+            Statement statement=connection.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+            while(result.next()) {
+                bookAverage = Integer.parseInt(result.getString("Average"));
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error in getBookReviewAverage: " + sql + " Exception: " + e);
+        }
+        return bookAverage;
+    
+    }
+
+    */
 
 }
     
