@@ -71,7 +71,7 @@ public class FilterBooks extends HttpServlet {
             toClient.println("<div class='book-preview'>");
             toClient.println("<div><div class='cover'><img class='cover' src='" + book.cover_image + "'></div></div>");
             toClient.println("<div class='info'>");
-            toClient.println("<a href='book.html'><b>What is a book?</b></a><br><br>");
+            toClient.println("<a href='book.html'><b>" + book.title + "</b></a><br><br>");
             toClient.println("<i>" + book.author + "   " + book.publish_year + "</i><i style='padding-left:450px;'>Available books:  " + book.stock + "</i>");
          //  Integer bookAvg = BookData.getBookReviewAverage(connection, book);
             toClient.println("<p>★★★★ <i>(Avg.      (3 stars) )</i></p>");
