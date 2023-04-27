@@ -26,7 +26,7 @@ public class CheckLogin extends HttpServlet {
             res.sendRedirect("Main?userId=" + userId);
 
         }else{
-            res.sendRedirect("Login");
+            res.sendRedirect("Login?status=errors");
 
         }
 
