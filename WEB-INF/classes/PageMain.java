@@ -19,7 +19,7 @@ public class PageMain extends HttpServlet {
 
         toClient.println(Utils.header("Start"));
 
-        // String city = req.getParameter("ciudad");
+        Integer userId = Integer.parseInt(req.getParameter("userId"));
 
         toClient.println("<div class='header header-title'>DKL Bookstore</div>");
 
@@ -37,6 +37,7 @@ public class PageMain extends HttpServlet {
 
         toClient.println("<h2>Search books</h2>");
         toClient.println("<form action='FilterBooks'>");
+        toClient.println("<input type='hidden' name='userId' value=" + userId +">");
         toClient.println("<input type='text' placeholder='Author/title (optional)' name='author_or_title' value=''> ");
         toClient.println("<select name='genre'>");
         toClient.println("<option value=''>Genre (optional)</option>");
@@ -49,7 +50,7 @@ public class PageMain extends HttpServlet {
 
         toClient.println("<select name='sortFilter'>");
         toClient.println("<option value=''>Order By (optional)</option>");
-        toClient.println("<option value='rating'>Sort by rating</option>");
+        toClient.println("<option value=rating>Sort by rating</option>");
         toClient.println("<option value=publish_year>Sort by year</option>");
         toClient.println(" </select>");
         

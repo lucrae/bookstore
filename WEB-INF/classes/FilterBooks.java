@@ -22,6 +22,7 @@ public class FilterBooks extends HttpServlet {
         String genre = req.getParameter("genre");
         String author_or_title = req.getParameter("author_or_title");
         String sortFilter = req.getParameter("sortFilter");
+        Integer userId = Integer.parseInt(req.getParameter("userId"));
 
         Vector<BookData> resultFilter = BookData.filterCriteria(connection, author_or_title, genre, sortFilter);
 
@@ -41,6 +42,8 @@ public class FilterBooks extends HttpServlet {
 
         toClient.println("<h2>Search books</h2>");
         toClient.println("<form action='FilterBooks'>");
+        toClient.println("<input type='hidden' name='userId' value=" + userId +">");
+        toClient.println("<input type='hidden' name='userId' value=" + userId +">");
         toClient.println("<input type='text' placeholder='Author/title (optional)' name='author_or_title' value=''> ");
         toClient.println("<select name='genre'>");
         toClient.println("<option value=''>Genre (optional)</option>");
@@ -53,7 +56,7 @@ public class FilterBooks extends HttpServlet {
 
         toClient.println("<select name='sortFilter'>");
         toClient.println("<option value=''>Order By (optional)</option>");
-        toClient.println("<option value='rating'>Sort by rating</option>");
+        toClient.println("<option value=rating>Sort by rating</option>");
         toClient.println("<option value=publish_year>Sort by year</option>");
         toClient.println(" </select>");
         
@@ -73,8 +76,15 @@ public class FilterBooks extends HttpServlet {
             toClient.println("<div class='info'>");
             toClient.println("<a href='book.html'><b>" + book.title + "</b></a><br><br>");
             toClient.println("<i>" + book.author + "   " + book.publish_year + "</i><i style='padding-left:450px;'>Available books:  " + book.stock + "</i>");
-         //  Integer bookAvg = BookData.getBookReviewAverage(connection, book);
-            toClient.println("<p>★★★★ <i>(Avg.      (3 stars) )</i></p>");
+            Double bookAvg = BookData.getBookRating(connection, book.ID);
+            int roundedRating = (int) Math.round(bookAvg);
+        
+            toClient.println("<p>");
+            for (int j=0; j < roundedRating; j++){
+                toClient.println("&#9733; ");
+            }
+
+            toClient.println("<i> (Average "+ bookAvg +")</i></p>");
             toClient.println("<p>" + book.blurb + "</p> ");
             toClient.println("</div>");
             toClient.println("</div>");

@@ -26,7 +26,7 @@ public class BookList extends HttpServlet {
         toClient.println("<td>cover_image</td>");
         toClient.println("</tr>");
 
-        Vector<BookData> bookList = BookData.getBySearchAndSort(connection, "'Suzanne Collins'", "publish_year"); 
+        Vector<BookData> bookList = BookData.getByRatingDesc(connection); 
 
 
         for(int i=0; i< bookList.size(); i++){
@@ -40,6 +40,9 @@ public class BookList extends HttpServlet {
         }
 
         toClient.println("</table>");
+
+        Double avgRating = BookData.getBookRating(connection, 1);
+        toClient.println("<h1>Rating:  " + avgRating + "</h1>");
 
         toClient.close();
     }
