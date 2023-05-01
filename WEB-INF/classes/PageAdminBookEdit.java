@@ -45,7 +45,9 @@ public class PageAdminBookEdit extends HttpServlet {
         toClient.println("<tr><td>Genre</td>");
         toClient.println("<td><input name='genre' value='" + book.genre + "'></td></tr>");
         toClient.println("<tr><td>Cover image</td>");
-        toClient.println("<td><img class='cover' src='" + book.cover_image + "'><br><input name='cover_image' value='" + book.cover_image + "'></td></tr>");
+        toClient.println("<td><img class='cover' src='" + book.cover_image + "'></td></tr>");
+        toClient.println("<tr><td>Image link</td>");
+        toClient.println("<td><input name='cover_image' value='" + book.cover_image + "'></td></tr>");
         toClient.println("<tr><td>Price</td>");
         toClient.println("<td><input name='price' value='" + book.price + "'></td></tr>");
         toClient.println("<tr><td>Stock</td>");
