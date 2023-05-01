@@ -35,7 +35,7 @@ public class RegisterUser extends HttpServlet {
             res.sendRedirect("Main?userId=" + newId);
 
         }else{
-            res.sendRedirect("Register");
+            res.sendRedirect("Register?status=error");
     
 
         }

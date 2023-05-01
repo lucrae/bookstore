@@ -19,11 +19,19 @@ public class PageRegister extends HttpServlet {
 
         toClient.println(Utils.header("Start"));
 
-        // String city = req.getParameter("ciudad");
+        String errorExists = req.getParameter("status");
 
         toClient.println("<div class='header header-title'>DKL Bookstore</div>");
         toClient.println("<div class='body'>");
         toClient.println("<form action='RegisterUser'>");
+
+          if (errorExists != null){
+          toClient.println("<script type='text/javascript'>");
+          toClient.println("alert('Double check password, or you may already have an account')");
+          toClient.println("</script>");
+        }
+
+
         toClient.println("<h1>Make an account</h1>");
         toClient.println("<p><input type='text' placeholder='First Name' name='first_name' required></p>");
         toClient.println("<p><input type='text' placeholder='Last Name/s' name='last_name' required></p>");
@@ -31,7 +39,8 @@ public class PageRegister extends HttpServlet {
         toClient.println("<p><input type='text' placeholder='Your street name' name='street' required></p>");
         toClient.println("<p><input type='text' placeholder='Postal code' name='postal_code' required></p>");
         toClient.println("<p><input type='text' placeholder='City name' name='city' required></p>");
-        toClient.println("<p><input type='password' placeholder='Password' name='password' required></p>");
+        toClient.println("<p><input type='password' placeholder='Password' name='password' required id='password'>");
+        toClient.println("<button onclick='unhidePassword()' type='button'>Show Password</button></p>");
         toClient.println("<p><input type='password' placeholder='Repeat password' name='password2' required></p>");
         toClient.println("<input type='submit' value='Make an account'>");
         toClient.println("</form>");
@@ -39,8 +48,18 @@ public class PageRegister extends HttpServlet {
       
         toClient.println("</div>");
 
-
+         toClient.println("<script type='text/javascript'>");
+        toClient.println("function unhidePassword() {");
+        toClient.println("var passwordInput = document.getElementById('password');");
+        toClient.println("if (passwordInput.type === 'password' ){");
+        toClient.println("passwordInput.type = 'text'");
+        toClient.println("} else {");
+        toClient.println("passwordInput.type = 'password'");
+        toClient.println("}");
+        toClient.println("}");
+        toClient.println("</script>");
         toClient.println(Utils.footer());
         toClient.close();
+
     }
 }

@@ -16,17 +16,23 @@ public class UserUpdate extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException  {
         res.setContentType("text/html");
         String idStr = req.getParameter("ID");
-        System.out.println(req.getParameter("ID"));
+        Integer admin = 0;
+        if (req.getParameter("is_admin") == null) {
+            admin = 0;
+        } else{
+            admin = 1;
+        }
+
         UserData user = new UserData(
-                    req.getParameter("ID"),
+                    Integer.parseInt(req.getParameter("ID")),
                     req.getParameter("email"),
                     req.getParameter("first_name"),
                     req.getParameter("last_name"),
                     req.getParameter("street"),
-                    req.getParameter("postal_code"),
+                    Integer.parseInt(req.getParameter("postal_code")),
                     req.getParameter("city"),
                     req.getParameter("password"),
-                    req.getParameter("is_admin")
+                    admin
                 );
         int n = UserData.updateUser(connection, user);
         res.sendRedirect("AdminUserEdit?id=" + idStr + "&a=" + "Updated");

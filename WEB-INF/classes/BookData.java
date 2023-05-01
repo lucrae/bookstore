@@ -56,6 +56,7 @@ public class BookData {
         return vec;
     }
 
+
     public static Vector<BookData> getLatestBooks(Connection connection) {
         Vector<BookData> vec = new Vector<BookData>();
         String sql = "SELECT TOP 5 * FROM Books ORDER BY ID DESC";
@@ -116,7 +117,8 @@ public class BookData {
 
     public static Vector<BookData> getBySearch(Connection connection, String text) {
         Vector<BookData> vec = new Vector<BookData>();
-        String sql = "SELECT * FROM Books WHERE " + text + " IN(title, author)";
+        String sql = "SELECT * FROM Books WHERE title LIKE " + text + " OR author LIKE " + text;
+
         System.out.println("getBySearch: " + sql);
 
         try {
@@ -228,7 +230,7 @@ public class BookData {
 
     public static Vector<BookData> getByGenreAndSearch(Connection connection, String genre, String search) {
         Vector<BookData> vec = new Vector<BookData>();
-        String sql = "SELECT * FROM books WHERE title IN("+ search + ") OR author IN("+ search + ") AND genre=" + genre;
+        String sql = "SELECT * FROM books WHERE (title LIKE " + search + " OR author LIKE " + search + ") AND genre=" + genre;
 
         System.out.println("getByGenreAndSearch: " + sql);
 
@@ -285,11 +287,59 @@ public class BookData {
         return vec;
     }
 
+    public static Vector<BookData> getByRatingDesc(Connection connection) {
+        Vector<BookData> vec = new Vector<BookData>();
+        String sql = "SELECT Books.ID, Avg(Reviews.rating) AS AvgOfrating ";
+        sql = sql + "FROM Books INNER JOIN Reviews ON Books.ID = Reviews.book_id ";
+        sql = sql + "GROUP BY Books.ID ";
+        sql = sql + "ORDER BY Avg(Reviews.rating) DESC";
+
+        //query of book ID and rating in descending order
+
+        System.out.println("getByRatingDesc: " + sql);
+
+        try {
+            Statement statement=connection.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+            while(result.next()) {
+                BookData book = BookData.getBook(connection, result.getString("ID"));
+                vec.addElement(book);
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error in getByRatingDesc: " + sql + " Exception: " + e);
+        }
+        return vec;
+    }
+
+    public static double getBookRating(Connection connection, int bookId) {
+    double avgRating = 0;
+    String sql = "SELECT Books.ID, Books.title, Avg(Reviews.rating) AS AvgOfrating ";
+    sql = sql + "FROM Books INNER JOIN Reviews ON Books.ID = Reviews.book_id ";
+    sql = sql + "GROUP BY Books.ID, Books.title ";
+    sql = sql + "HAVING (((Books.ID)=" + bookId + ")) ";
+
+    System.out.println("getBookRating: " + sql);
+
+    try {
+        Statement statement=connection.createStatement();
+        ResultSet result = statement.executeQuery(sql);
+        while(result.next()) {
+            avgRating = result.getDouble("AvgOfrating");
+        }
+    } catch(SQLException e) {
+        e.printStackTrace();
+        System.out.println("Error in getBookRating: " + sql + " Exception: " + e);
+    }
+    return avgRating;
+}
+
+
     public static Vector<BookData> getByAll(Connection connection, String genre, String search, String orderBy) {
         Vector<BookData> vec = new Vector<BookData>();
-        String sql = "SELECT * FROM books WHERE title IN("+ search + ") OR author IN("+ search + ") AND genre=" + genre + " ORDER BY " + orderBy + "DESC";
+        String sql = "SELECT * FROM books WHERE (title LIKE " + search + " OR author LIKE " + search + ") AND genre=" + genre + " ORDER BY " + orderBy + " DESC";
 
-        System.out.println("getByGenreAndSearch: " + sql);
+        System.out.println("getByAll: " + sql);
 
         try {
             Statement statement=connection.createStatement();
@@ -310,7 +360,7 @@ public class BookData {
             }
         } catch(SQLException e) {
             e.printStackTrace();
-            System.out.println("Error in getByGenre: " + sql + " Exception: " + e);
+            System.out.println("Error in getByAll: " + sql + " Exception: " + e);
         }
         return vec;
     }
@@ -347,7 +397,7 @@ public class BookData {
 
     public static Vector<BookData> getBySearchAndSort(Connection connection, String text, String sortBy) {
         Vector<BookData> vec = new Vector<BookData>();
-        String sql = "SELECT * FROM Books WHERE " + text + " IN(title, author) ORDER BY " + sortBy + " DESC";
+        String sql = "SELECT * FROM Books WHERE title LIKE " + text + " OR author LIKE " + text + " ORDER BY " + sortBy + " DESC";
         System.out.println("getBySearch: " + sql);
 
         try {
@@ -374,6 +424,79 @@ public class BookData {
         return vec;
     }
 
+    public static Vector<BookData> getByGenreAndRating(Connection connection, String genre) {
+        Vector<BookData> vec = new Vector<BookData>();
+        String sql = "SELECT Books.ID, Avg(Reviews.rating) AS AvgOfrating, Books.genre ";
+        sql = sql + "FROM Books INNER JOIN Reviews ON Books.ID = Reviews.book_id ";
+        sql = sql + "GROUP BY Books.ID, Books.genre ";
+        sql = sql + "HAVING (((Books.genre)=" + genre + ")) ";
+        sql = sql + "ORDER BY Avg(Reviews.rating) DESC";
+
+        System.out.println("getBySearch: " + sql);
+
+        try {
+            Statement statement=connection.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+            while(result.next()) {
+                BookData book = BookData.getBook(connection, result.getString("ID"));
+                vec.addElement(book);
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error in getByGenreAndRating: " + sql + " Exception: " + e);
+        }
+        return vec;
+    }
+
+     public static Vector<BookData> getBySearchAndRating(Connection connection, String author_or_title) {
+        Vector<BookData> vec = new Vector<BookData>();
+        String sql = "SELECT Books.ID, Avg(Reviews.rating) AS AvgOfrating, Books.author ";
+        sql = sql + "FROM Books INNER JOIN Reviews ON Books.ID = Reviews.book_id ";
+        sql = sql + "WHERE Books.author = " + author_or_title + " OR Books.title LIKE " + author_or_title;
+        sql = sql + " GROUP BY Books.ID, Books.author ";
+        sql = sql + "ORDER BY Avg(Reviews.rating) DESC";
+
+        System.out.println("getBySearch: " + sql);
+
+        try {
+            Statement statement=connection.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+            while(result.next()) {
+                BookData book = BookData.getBook(connection, result.getString("ID"));
+                vec.addElement(book);
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error in getByGenreAndRating: " + sql + " Exception: " + e);
+        }
+        return vec;
+    }
+
+    public static Vector<BookData> getByAllRating(Connection connection, String genre, String author_or_title) {
+        Vector<BookData> vec = new Vector<BookData>();
+        String sql = "SELECT Books.ID, AVG(Reviews.rating) AS AvgOfrating, Books.author ";
+        sql = sql + "FROM Books "; 
+        sql = sql + "INNER JOIN Reviews ON Books.ID = Reviews.book_id ";
+        sql = sql + "WHERE (Books.author LIKE " + author_or_title + " OR Books.title LIKE " + author_or_title +") ";
+        sql = sql + "AND Books.genre =" + genre;
+        sql = sql + " GROUP BY Books.ID, Books.author ORDER BY AVG(Reviews.rating) DESC";
+
+        System.out.println("getByAllRating: " + sql);
+
+        try {
+            Statement statement=connection.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+            while(result.next()) {
+                BookData book = BookData.getBook(connection, result.getString("ID"));
+                vec.addElement(book);
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error in getByAllRating: " + sql + " Exception: " + e);
+        }
+        return vec;
+    }
+
 
     public static Vector<BookData> filterCriteria(Connection connection, String author_or_title, String genre, String sortFilter) {
   
@@ -388,46 +511,77 @@ public class BookData {
                 Vector<BookData> bookList = BookData.getByGenre(connection, genre); 
                 return bookList;
 
-            }else{ // author only
+            }else if(genre.equals("")){ // author only
 
-                Vector<BookData> bookList = BookData.getBySearch(connection, "'" + author_or_title + "'"); 
+                Vector<BookData> bookList = BookData.getBySearch(connection, "'%" + author_or_title + "%'"); 
                 return bookList;
 
-             }
+            }else{
+                Vector<BookData> bookList = BookData.getByGenreAndSearch(connection, "'" + genre + "'", "'%" + author_or_title + "%'"); 
+                return bookList;
+                
+            }
         }else{ //there is an order filter
+
 
             if(author_or_title.equals("")){ //if there is no author 
 
                 if(genre.equals("")) {// no author nor genre
 
-                    Vector<BookData> bookList = BookData.getBySort(connection, sortFilter); 
-                    return bookList;
+                    if(sortFilter.equals("publish_year")){
+                        Vector<BookData> bookList = BookData.getBySort(connection, sortFilter); 
+                        return bookList;
+                    }
+                    else{
+                        Vector<BookData> bookList = BookData.getByRatingDesc(connection); 
+                        return bookList;
+                    }
+                   
 
                 }else{ // genre + filter
                 
-                    Vector<BookData> bookList = BookData.getByGenreAndSort(connection, "'" + genre + "'", sortFilter); 
-                    return bookList;
+                    if(sortFilter.equals("publish_year")){
+                        Vector<BookData> bookList = BookData.getByGenreAndSort(connection, "'" + genre + "'", sortFilter); 
+                        return bookList;
+                    }else{
+                        Vector<BookData> bookList = BookData.getByGenreAndRating(connection, "'" + genre + "'"); 
+                        return bookList;
+                    }
+                    
 
                 }  
             }else{// there is author 
 
-                if(genre.equals("")) {
-                    Vector<BookData> bookList = BookData.getBySearchAndSort(connection, "'" + author_or_title + "'", sortFilter);
-                    return bookList;
-                     // author + filter
+                if(genre.equals("")) {   // author + filter
+
+                    if(sortFilter.equals("publish_year")){
+                        Vector<BookData> bookList = BookData.getBySearchAndSort(connection, "'%" + author_or_title + "%'", sortFilter);
+                        return bookList;
+                    }else{
+                        Vector<BookData> bookList = BookData.getBySearchAndRating(connection, "'%" + author_or_title + "%'");
+                        return bookList;
+                    }
+                    
+                    
 
                 }else{ //ALL FILTERS
 
-                    Vector<BookData> bookList = BookData.getByAll(connection, "'" + genre + "'", "'" + author_or_title + "'", "'" + sortFilter + "'"); 
-                    return bookList;
+                    if(sortFilter.equals("publish_year")){
+                        Vector<BookData> bookList = BookData.getByAll(connection, "'" + genre + "'", "'%" + author_or_title + "%'", sortFilter); 
+                        return bookList;
+                    }else{
+                        Vector<BookData> bookList = BookData.getByAllRating(connection, "'" + genre + "'", "'%" + author_or_title + "%'"); 
+                        return bookList;
+
+                    }
+                    
                 }
 
             }
-            
-            
         }
-    
+
     }
+           
 
 }
     

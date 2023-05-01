@@ -45,7 +45,6 @@ public class PageAdminUserEdit extends HttpServlet {
         toClient.println("<tr><td>Password</td>");
         toClient.println("<td><input name='password' value='" + user.password + "'></td></tr>");
         toClient.println("<tr><td>Is admin?</td>");
-        System.out.println(user.is_admin);
         if (user.is_admin == 0)
             toClient.println("<td><input type='checkbox' name='is_admin'></td></tr>");
         else 
