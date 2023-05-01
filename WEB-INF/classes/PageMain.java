@@ -29,10 +29,10 @@ public class PageMain extends HttpServlet {
 
         Vector<BookData> bookList = BookData.getLatestBooks(connection);
         for(int i=0; i< bookList.size(); i++){
-                BookData book = bookList.elementAt(i);
-                toClient.println("<img class='cover' src='" + book.cover_image + "'>");
+            BookData book = bookList.elementAt(i);
+            String link = "Book?bookId=" + book.ID + "&userId=" + userId;
+            toClient.println("<a href='" + link + "'><img class='cover' src='" + book.cover_image + "'></a>");
         }
-
         toClient.println("</div>");
 
         toClient.println("<h2>Search books</h2>");

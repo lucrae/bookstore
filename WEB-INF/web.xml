@@ -122,6 +122,11 @@
         <servlet-class>PageRegister</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>PageBook</servlet-name>
+        <servlet-class>PageBook</servlet-class>
+    </servlet>
+
     <!-- ================ -->
     <!-- SERVLET MAPPINGS -->
     <!-- ================ -->
@@ -242,6 +247,11 @@
     <servlet-mapping>
         <servlet-name>PageRegister</servlet-name>
         <url-pattern>/Register</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>PageBook</servlet-name>
+        <url-pattern>/Book</url-pattern>
     </servlet-mapping>
     
 </web-app>

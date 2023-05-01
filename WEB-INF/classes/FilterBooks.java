@@ -34,8 +34,9 @@ public class FilterBooks extends HttpServlet {
 
         Vector<BookData> bookList = BookData.getLatestBooks(connection);
         for(int i=0; i< bookList.size(); i++){
-                BookData book = bookList.elementAt(i);
-                toClient.println("<img class='cover' src='" + book.cover_image + "'>");
+            BookData book = bookList.elementAt(i);
+            String link = "Book?bookId=" + book.ID + "&userId=" + userId;
+            toClient.println("<a href='" + link + "'><img class='cover' src='" + book.cover_image + "'></a>");
         }
 
         toClient.println("</div>");
@@ -70,11 +71,13 @@ public class FilterBooks extends HttpServlet {
 
         for(int i=0; i< resultFilter.size(); i++){
             BookData book = resultFilter.elementAt(i);
+
+            String link = "Book?bookId=" + book.ID + "&userId=" + userId;
             
             toClient.println("<div class='book-preview'>");
             toClient.println("<div><div class='cover'><img class='cover' src='" + book.cover_image + "'></div></div>");
             toClient.println("<div class='info'>");
-            toClient.println("<a href='book.html'><b>" + book.title + "</b></a><br><br>");
+            toClient.println("<a href='" + link + "'><b>" + book.title + "</b></a><br><br>");
             toClient.println("<i>" + book.author + "   " + book.publish_year + "</i><i style='padding-left:450px;'>Available books:  " + book.stock + "</i>");
             Double bookAvg = BookData.getBookRating(connection, book.ID);
             int roundedRating = (int) Math.round(bookAvg);
