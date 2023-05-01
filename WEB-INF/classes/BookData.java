@@ -57,6 +57,36 @@ public class BookData {
     }
 
 
+    public static BookData getBook(Connection connection, Integer bookId) {
+        String sql = "Select * FROM Books WHERE id=" + bookId;
+        System.out.println("getBookList: " + sql);
+        try {
+            Statement statement=connection.createStatement();
+            ResultSet result = statement.executeQuery(sql);
+            result.next();
+
+            BookData book = new BookData(
+                Integer.parseInt(result.getString("ID")),
+                result.getString("title"),
+                result.getString("author"),
+                Integer.parseInt(result.getString("publish_year")),
+                result.getString("blurb"),
+                result.getString("genre"),
+                result.getString("cover_image"),
+                Float.parseFloat(result.getString("price")),
+                Integer.parseInt(result.getString("stock"))
+            );
+
+            return book;
+
+        } catch(SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error in getBookList: " + sql + " Exception: " + e);
+        }
+        return null;
+    }
+
+
     public static Vector<BookData> getLatestBooks(Connection connection) {
         Vector<BookData> vec = new Vector<BookData>();
         String sql = "SELECT TOP 5 * FROM Books ORDER BY ID DESC";
