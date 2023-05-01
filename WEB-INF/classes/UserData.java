@@ -14,9 +14,9 @@ public class UserData {
     Integer postal_code;
     String city;
     String password;
-    Boolean is_admin;
+    Integer is_admin;
     
-    UserData(Integer ID, String email, String first_name, String last_name, String street, Integer postal_code, String city, String password, Boolean is_admin) {
+    UserData(Integer ID, String email, String first_name, String last_name, String street, Integer postal_code, String city, String password, Integer is_admin) {
         this.ID = ID;
         this.email = email;
         this.first_name = first_name;
@@ -36,6 +36,7 @@ public class UserData {
             Statement statement=connection.createStatement();
             ResultSet result = statement.executeQuery(sql);
             while(result.next()) {
+                
                 UserData user = new UserData(
                     Integer.parseInt(result.getString("ID")),
                     result.getString("email"),
@@ -45,7 +46,7 @@ public class UserData {
                     Integer.parseInt(result.getString("postal_code")),
                     result.getString("city"),
                     result.getString("password"),
-                    Boolean.parseBoolean(result.getString("is_admin"))
+                    Integer.parseInt(result.getString("is_admin"))
                 );
                 vec.addElement(user);
             }
@@ -75,7 +76,7 @@ public class UserData {
                     Integer.parseInt(result.getString("postal_code")),
                     result.getString("city"),
                     result.getString("password"),
-                    Boolean.parseBoolean(result.getString("is_admin"))
+                    Integer.parseInt(result.getString("is_admin"))
                 );
             }
             result.close();
@@ -89,7 +90,7 @@ public class UserData {
 
     public static Vector<UserData> getUserSearch(Connection connection, String search) {
         Vector<UserData> vec = new Vector<UserData>();
-        String sql = "SELECT * FROM Accounts WHERE email LIKE '%" + search + "%'";
+        String sql = "SELECT * FROM Accounts WHERE (email LIKE '%"+search+"%' OR first_name LIKE '%"+search+"%' OR last_name LIKE '%"+search+"%' OR city LIKE '%"+search+"%')";
         System.out.println("getUserSearch: " + sql);
 
         try {
@@ -105,7 +106,7 @@ public class UserData {
                     Integer.parseInt(result.getString("postal_code")),
                     result.getString("city"),
                     result.getString("password"),
-                    Boolean.parseBoolean(result.getString("is_admin"))
+                    Integer.parseInt(result.getString("is_admin"))
                 );
                 vec.addElement(user);
             }
@@ -131,7 +132,7 @@ public class UserData {
             stmtUpdate.setInt(5,user.postal_code);
             stmtUpdate.setString(6,user.city);
             stmtUpdate.setString(7,user.password);
-            stmtUpdate.setBoolean(8,user.is_admin);
+            stmtUpdate.setInt(8,user.is_admin);
             stmtUpdate.setInt(9,user.ID);
             n = stmtUpdate.executeUpdate();
             stmtUpdate.close();
@@ -157,7 +158,7 @@ public class UserData {
             stmtUpdate.setInt(6,user.postal_code);
             stmtUpdate.setString(7,user.city);
             stmtUpdate.setString(8,user.password);
-            stmtUpdate.setBoolean(9,user.is_admin);
+            stmtUpdate.setInt(9,user.is_admin);
             n = stmtUpdate.executeUpdate();
             stmtUpdate.close();
         } catch(SQLException e) {
@@ -198,7 +199,7 @@ public class UserData {
                     Integer.parseInt(result.getString("postal_code")),
                     result.getString("city"),
                     result.getString("password"),
-                    Boolean.parseBoolean(result.getString("is_admin"))
+                    Integer.parseInt(result.getString("is_admin"))
                 );
             }
             result.close();

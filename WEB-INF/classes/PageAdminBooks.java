@@ -5,7 +5,7 @@ import javax.servlet.http.*;
 import java.sql.Connection;
 
 @SuppressWarnings("serial")
-public class PageAdminUsersSearch extends HttpServlet {
+public class PageAdminBooks extends HttpServlet {
     Connection connection;
 
     public void init(ServletConfig config) throws ServletException {
@@ -16,9 +16,8 @@ public class PageAdminUsersSearch extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException  {
         res.setContentType("text/html");
         PrintWriter toClient = res.getWriter();
-        String idStr = req.getParameter("search");
         
-        toClient.println(Utils.header("Users"));
+        toClient.println(Utils.header("Books"));
 
         toClient.println("<div class='header'>");
         toClient.println("<div class='header-title'>DKL Bookstore</div>");
@@ -32,8 +31,8 @@ public class PageAdminUsersSearch extends HttpServlet {
         toClient.println("<br>");
 
         toClient.println("<div class='left-right'>");
-        toClient.println("<div><h1>List of Users</h1>");
-        toClient.println("<form action='AdminUsersSearch' method='GET'><input type='text' placeholder='Search User' id='search' name='search'><input type='submit' value='Search'></form>");
+        toClient.println("<div><h1>List of Books</h1>");
+        toClient.println("<form action='AdminBooksSearch' method='GET'><input type='text' placeholder='Search Book' id='search' name='search'><input type='submit' value='Search'></form>");
         toClient.println("</div>");
         toClient.println("</div>");
 
@@ -45,10 +44,14 @@ public class PageAdminUsersSearch extends HttpServlet {
         toClient.println("<div>");
         toClient.println("<tr>");
         toClient.println("<td><b>ID</b></td>");
-        toClient.println("<td><b>Email</b></td>");
-        toClient.println("<td><b>First name</b></td>");
-        toClient.println("<td><b>Last name</b></td>");
-        toClient.println("<td><b>City</b></td>");
+        toClient.println("<td><b>Title</b></td>");
+        toClient.println("<td><b>Author</b></td>");
+        toClient.println("<td><b>Publish year</b></td>");
+        // toClient.println("<td><b>Description</b></td>");
+        toClient.println("<td><b>Genre</b></td>");
+        // toClient.println("<td><b>Cover image</b></td>");
+        // toClient.println("<td><b>Price</b></td>");
+        // toClient.println("<td><b>Stock</b></td>");
         toClient.println("</tr>");
         toClient.println("</div>");
 
@@ -59,18 +62,22 @@ public class PageAdminUsersSearch extends HttpServlet {
         userList = UserData.getUserList(connection);
     */    
     
-        Vector<UserData> userSearch = UserData.getUserSearch(connection, idStr);
+        Vector<BookData> bookList = BookData.getBookList(connection);
      
-        for(int i=0; i< userSearch.size(); i++){
-                UserData user = userSearch.elementAt(i);
+        for(int i=0; i< bookList.size(); i++){
+                BookData book = bookList.elementAt(i);
                 toClient.println("<div>");
                 toClient.println("<tr>");
-                toClient.println("<td>" + user.ID + " </td>");
-                toClient.println("<td>" + user.email + " </td>");
-                toClient.println("<td>" + user.first_name + " </td>");
-                toClient.println("<td>" + user.last_name + " </td>");
-                toClient.println("<td>" + user.city + "</td>");
-                toClient.println("<td><a href='UserEdit?id=" + user.ID + "'>Edit</a></td>");
+                toClient.println("<td>" + book.ID + " </td>");
+                toClient.println("<td>" + book.title + " </td>");
+                toClient.println("<td>" + book.author + " </td>");
+                toClient.println("<td>" + book.publish_year + " </td>");
+                // toClient.println("<td>" + book.blurb + " </td>");
+                toClient.println("<td>" + book.genre + "</td>");
+                // toClient.println("<td>" + book.cover_image + "</td>");
+                // toClient.println("<td>" + book.price + "</td>");
+                // toClient.println("<td>" + book.stock + "</td>");
+                toClient.println("<td><a href='AdminBookEdit?id=" + book.ID + "'>Edit</a></td>");
                 toClient.println("</tr>");
                 toClient.println("</div>");
         }

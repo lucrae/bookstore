@@ -30,7 +30,7 @@ public class RegisterUser extends HttpServlet {
         if(myUser == null && password.equals(password2)) {
             Vector<UserData> userList = UserData.getUserList(connection);
             int newId = userList.size() + 1;
-            UserData newUser = new UserData(newId, email, first_name, last_name, street, postal_code, city, password, false);
+            UserData newUser = new UserData(newId, email, first_name, last_name, street, postal_code, city, password, 0);
             int nAffected = UserData.registerUser(connection, newUser);
             res.sendRedirect("Main?userId=" + newId);
 

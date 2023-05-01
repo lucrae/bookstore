@@ -69,7 +69,7 @@ public class PageAdminUsers extends HttpServlet {
                 toClient.println("<td>" + user.first_name + " </td>");
                 toClient.println("<td>" + user.last_name + " </td>");
                 toClient.println("<td>" + user.city + "</td>");
-                toClient.println("<td><a href='UserEdit?id=" + user.ID + "'>Edit</a></td>");
+                toClient.println("<td><a href='AdminUserEdit?id=" + user.ID + "'>Edit</a></td>");
                 toClient.println("</tr>");
                 toClient.println("</div>");
         }
