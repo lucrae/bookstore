@@ -5,6 +5,7 @@ public class Utils {
         str.append("<html>");
         str.append("<head><title>" + title + "</title>");
         str.append("<link rel='stylesheet' href='style.css'>");
+        str.append("<script src='getImage.js'></script>");
         str.append("</head>");
         str.append("<body>");
         str.append("<div class='frame'>");

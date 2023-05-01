@@ -117,7 +117,7 @@ public class BookData {
 
     public static Vector<BookData> getBySearch(Connection connection, String text) {
         Vector<BookData> vec = new Vector<BookData>();
-        String sql = "SELECT * FROM Books WHERE title LIKE " + text + " OR author LIKE " + text;
+        String sql = "SELECT * FROM Books WHERE (title LIKE '%"+text+"%' OR author LIKE '%"+text+"%')";
 
         System.out.println("getBySearch: " + sql);
 
@@ -175,7 +175,7 @@ public class BookData {
         String sql ="UPDATE Books "
             + "SET author = ?, title = ?, publish_year = ?, blurb = ?, genre = ?, cover_image = ?, price = ?, stock = ?"
             + " WHERE ID = ?";
-        System.out.println("updateUser: " + sql);
+        System.out.println("updateBook: " + sql);
         int n = 0;
         try {
             PreparedStatement stmtUpdate= connection.prepareStatement(sql);

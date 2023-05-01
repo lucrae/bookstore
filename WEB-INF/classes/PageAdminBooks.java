@@ -31,7 +31,7 @@ public class PageAdminBooks extends HttpServlet {
         toClient.println("<br>");
 
         toClient.println("<div class='left-right'>");
-        toClient.println("<div><h1>List of Books</h1>");
+        toClient.println("<div><h1>List of Books</h1> <a style='padding-right:15px padding-bottom:10px' href='AdminAddBook'>Add new book</a>");
         toClient.println("<form action='AdminBooksSearch' method='GET'><input type='text' placeholder='Search Book' id='search' name='search'><input type='submit' value='Search'></form>");
         toClient.println("</div>");
         toClient.println("</div>");
