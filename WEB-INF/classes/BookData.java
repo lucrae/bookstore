@@ -56,7 +56,6 @@ public class BookData {
         return vec;
     }
 
-
     public static BookData getBook(Connection connection, Integer bookId) {
         String sql = "Select * FROM Books WHERE id=" + bookId;
         System.out.println("getBookList: " + sql);
@@ -345,7 +344,7 @@ public class BookData {
     public static double getBookRating(Connection connection, int bookId) {
     double avgRating = 0;
     String sql = "SELECT Books.ID, Books.title, Avg(Reviews.rating) AS AvgOfrating ";
-    sql = sql + "FROM Books INNER JOIN Reviews ON Books.ID = Reviews.book_id ";
+    sql = sql + "FROM Books INNER JOIN Reviews ON Books.ID = Reviews.book_id WHERE Reviews.rating <> 0 ";
     sql = sql + "GROUP BY Books.ID, Books.title ";
     sql = sql + "HAVING (((Books.ID)=" + bookId + ")) ";
 

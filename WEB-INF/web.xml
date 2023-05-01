@@ -107,6 +107,26 @@
         <servlet-class>PageBook</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>PageBuy</servlet-name>
+        <servlet-class>PageBuy</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>PageAccount</servlet-name>
+        <servlet-class>PageAccount</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>BuyBook</servlet-name>
+        <servlet-class>BuyBook</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ReviewUpdate</servlet-name>
+        <servlet-class>ReviewUpdate</servlet-class>
+    </servlet>
+
     <!-- ================ -->
     <!-- SERVLET MAPPINGS -->
     <!-- ================ -->
@@ -213,5 +233,25 @@
         <servlet-name>PageBook</servlet-name>
         <url-pattern>/Book</url-pattern>
     </servlet-mapping>
-    
+
+    <servlet-mapping>
+        <servlet-name>PageBuy</servlet-name>
+        <url-pattern>/Buy</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>PageAccount</servlet-name>
+        <url-pattern>/Account</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>BuyBook</servlet-name>
+        <url-pattern>/BuyBook</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ReviewUpdate</servlet-name>
+        <url-pattern>/ReviewUpdate</url-pattern>
+    </servlet-mapping>
+
 </web-app>

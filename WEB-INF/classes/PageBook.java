@@ -34,9 +34,12 @@ public class PageBook extends HttpServlet {
         
         toClient.println("<div class='left-right'>");
 
+
         toClient.println("<div>");
         toClient.println("<img class='cover' src='" + book.cover_image + "'>");
         toClient.println("<p><form action='Buy'>");
+        toClient.println("<input type='hidden' name='bookId' value='" + bookId + "' /> ");
+        toClient.println("<input type='hidden' name='userId' value='" + userId + "' /> ");
         toClient.println("<input type='submit' value='Buy' class='full-width' />");
         toClient.println("</form></p>");
         toClient.println("</div>");
