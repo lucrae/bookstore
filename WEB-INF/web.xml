@@ -138,6 +138,11 @@
     </servlet>
 
     <servlet>
+        <servlet-name>PageUserEdit</servlet-name>
+        <servlet-class>PageUserEdit</servlet-class>
+    </servlet>
+
+    <servlet>
         <servlet-name>BuyBook</servlet-name>
         <servlet-class>BuyBook</servlet-class>
     </servlet>
@@ -282,6 +287,11 @@
     <servlet-mapping>
         <servlet-name>PageAccount</servlet-name>
         <url-pattern>/Account</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>PageUserEdit</servlet-name>
+        <url-pattern>/Edit</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>

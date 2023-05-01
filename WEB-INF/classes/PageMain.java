@@ -21,7 +21,10 @@ public class PageMain extends HttpServlet {
 
         Integer userId = Integer.parseInt(req.getParameter("userId"));
 
-        toClient.println("<div class='header header-title'>DKL Bookstore</div>");
+        toClient.println("<div class='header'>");
+        toClient.println("<div class='header-title'>DKL Bookstore</div>");
+        toClient.println("<div><a style='padding-right:15px' href='Account?userId="+userId+"'>Account</a></div>");
+        toClient.println("</div>");
 
         toClient.println("<div class='body'>");
         toClient.println("<h2>Latest releases</h2>");
@@ -56,7 +59,7 @@ public class PageMain extends HttpServlet {
         
         toClient.println("<input type='submit' value='Search'>");
         toClient.println(" </form>");
-
+        toClient.println("</div>");
         
     }
 }
