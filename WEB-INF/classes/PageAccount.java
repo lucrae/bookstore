@@ -45,8 +45,8 @@ public class PageAccount extends HttpServlet {
             toClient.println("<div><img class='cover' src='" + book.cover_image + "'></div>");
             toClient.println("<div class='info'>");
             toClient.println("<a href='Book?bookId=" + book.ID + "&userId=" + userId + "'><b>" + book.title + "</b></a><br>");
-            toClient.println("<i>Author Authorson (1999)</i>");
-            toClient.println("<p>A book is a medium for recording information in the form of writing or images, typically composed of many pages (made of papyrus, parchment, vellum, or paper) bound together and protected by a cover.</p>");
+            toClient.println("<i>" + book.author + " (" + book.publish_year + ")</i>");
+            toClient.println("<p>" + book.blurb + "</p>");
             toClient.println("</div>");
             toClient.println("</div>");
 
@@ -60,9 +60,9 @@ public class PageAccount extends HttpServlet {
                 toClient.println("</span>");
                 toClient.println("<p>" + review.description + "</p>");  
 
-                toClient.println("<b>Write Review:</b>");
-            } else {
                 toClient.println("<b>Edit Review:</b>");
+            } else {
+                toClient.println("<b>Write Review:</b>");
             }
 
             toClient.println("<form action='ReviewUpdate'>");
