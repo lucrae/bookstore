@@ -44,7 +44,6 @@ public class FilterBooks extends HttpServlet {
         toClient.println("<h2>Search books</h2>");
         toClient.println("<form action='FilterBooks'>");
         toClient.println("<input type='hidden' name='userId' value=" + userId +">");
-        toClient.println("<input type='hidden' name='userId' value=" + userId +">");
         toClient.println("<input type='text' placeholder='Author/title (optional)' name='author_or_title' value=''> ");
         toClient.println("<select name='genre'>");
         toClient.println("<option value=''>Genre (optional)</option>");
