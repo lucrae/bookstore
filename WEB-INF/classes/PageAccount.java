@@ -27,11 +27,14 @@ public class PageAccount extends HttpServlet {
 
         toClient.println("<div class='header'>");
         toClient.println("<div class='header-title'>DKL Bookstore</div>");
-        toClient.println("<div><a style='padding-right:15px' href='Edit?userId="+userId+"'>Settings</a><a href='SignOut''>Sign Out</a></div>");
+        toClient.println("<div><a style='padding-right:15px' href='Edit?userId="+userId+"'>Settings</a><a href='Start''>Sign Out</a></div>");
         toClient.println("</div>");
 
         toClient.println("<div class='body'>");
-
+        toClient.println("<a href='Main?userId="+userId+"'>< Back</a>");
+        toClient.println("<br>");
+        toClient.println("<br>");
+        toClient.println("<br>");
         toClient.println("<h2>Purchased books</h2>");
         toClient.println("<div class='account-books'>");
 

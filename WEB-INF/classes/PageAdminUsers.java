@@ -21,7 +21,7 @@ public class PageAdminUsers extends HttpServlet {
 
         toClient.println("<div class='header'>");
         toClient.println("<div class='header-title'>DKL Bookstore</div>");
-        toClient.println("<div><a style='padding-right:15px' href='AdminUsers'>Users</a><a style='padding-right:15px' href='AdminBooks'>Books</a><a href='/''>Sign Out</a></div>");
+        toClient.println("<div><a style='padding-right:15px' href='AdminUsers'>Users</a><a style='padding-right:15px' href='AdminBooks'>Books</a><a href='Start''>Sign Out</a></div>");
         toClient.println("</div>");
 
         toClient.println("<div class='body'>");

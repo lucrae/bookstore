@@ -21,8 +21,12 @@ public class PageAdminUserEdit extends HttpServlet {
 
         toClient.println("<div class='header header-title'>DKL Bookstore</div>");
         toClient.println("<div class='body'>");
+        toClient.println("<a href='AdminUsers'>< Back</a>");
+        toClient.println("<br>");
+        toClient.println("<br>");
+        toClient.println("<br>");
         toClient.println("<h1>Edit user</h1>");
-        toClient.println("<form action='UserUpdate' method='GET'>");
+        toClient.println("<form action='AdminUserUpdate' method='GET'>");
         toClient.println("<table style='padding-bottom:15px'>");
 
         String idStr = req.getParameter("id"); 
@@ -54,7 +58,7 @@ public class PageAdminUserEdit extends HttpServlet {
         toClient.println("<input type='submit' value='Update user'>");
         toClient.println("</form>");
         toClient.println("<br>");
-        toClient.println("<a href='UserDelete?id=" + user.ID + "'>Delete user</a>");
+        toClient.println("<a href='UserDelete?userId=" + user.ID + "'>Delete user</a>");
         toClient.println("</div>");
 
         toClient.println(Utils.footer());

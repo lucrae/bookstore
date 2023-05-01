@@ -24,10 +24,14 @@ public class PageUserEdit extends HttpServlet {
 
         toClient.println("<div class='header'>");
         toClient.println("<div class='header-title'>DKL Bookstore</div>");
-        toClient.println("<div><a style='padding-right:15px' href='Account?userId="+user.ID+"'>Account</a><a style='padding-right:15px' href=''>Sign out</a></div>");
+        toClient.println("<div><a style='padding-right:15px' href='Account?userId="+user.ID+"'>Account</a><a style='padding-right:15px' href='Start'>Sign out</a></div>");
         toClient.println("</div>");
 
         toClient.println("<div class='body'>");
+        toClient.println("<a href='Account?userId="+user.ID+"'>< Back</a>");
+        toClient.println("<br>");
+        toClient.println("<br>");
+        toClient.println("<br>");
         toClient.println("<h1>Edit information</h1>");
         toClient.println("<form action='UserUpdate' method='GET'>");
         toClient.println("<table style='padding-bottom:15px'>");

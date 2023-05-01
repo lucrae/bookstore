@@ -31,6 +31,11 @@
     </servlet>
 
     <servlet>
+        <servlet-name>AdminUserUpdate</servlet-name>
+        <servlet-class>AdminUserUpdate</servlet-class>
+    </servlet>
+
+    <servlet>
         <servlet-name>UserUpdate</servlet-name>
         <servlet-class>UserUpdate</servlet-class>
     </servlet>
@@ -184,6 +189,11 @@
     <servlet-mapping>
         <servlet-name>UserUpdate</servlet-name>
         <url-pattern>/UserUpdate</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>AdminUserUpdate</servlet-name>
+        <url-pattern>/AdminUserUpdate</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>

@@ -17,7 +17,7 @@ public class UserDelete extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException  {
         res.setContentType("text/html");
-        Integer id = Integer.parseInt(req.getParameter("id"));
+        Integer id = Integer.parseInt(req.getParameter("userId"));
 
         int n = UserData.deleteUser(connection, id);
 

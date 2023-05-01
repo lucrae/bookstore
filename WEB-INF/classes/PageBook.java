@@ -26,8 +26,18 @@ public class PageBook extends HttpServlet {
         BookData book = BookData.getBook(connection, bookId);
         Double bookAvg = BookData.getBookRating(connection, bookId);
         int roundedRating = (int) Math.round(bookAvg);
+        UserData myUser = UserData.getUser(connection, req.getParameter("userId"));
 
-        toClient.println("<div class='header header-title'>DKL Bookstore</div>");
+        toClient.println("<div class='header'>");
+        toClient.println("<div class='header-title'>DKL Bookstore</div>");
+        toClient.println("<div><a style='padding-right:15px' href='Account?userId="+userId+"'>Settings</a>");
+
+        if(myUser.is_admin == 1){ // only appears if you are an admin
+            
+            toClient.println("<a style='padding-right:15px' href='Admin'>Admin</a>");
+
+        }
+        toClient.println("</div></div>");
 
         toClient.println("<div class='body'>");
         toClient.println("<a href='Main?userId=" + userId + "'>< Back</a><br></br>");

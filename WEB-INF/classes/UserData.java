@@ -143,6 +143,32 @@ public class UserData {
         return n;
     }
 
+    public static int adminUpdateUser(Connection connection, UserData user) {
+        String sql ="UPDATE Accounts "
+            + "SET email = ?, first_name = ?, last_name = ?, street = ?, postal_code = ?, city = ?, password = ?, is_admin = ?"
+            + " WHERE ID = ?";
+        System.out.println("adaminUpdateUser: " + sql);
+        int n = 0;
+        try {
+            PreparedStatement stmtUpdate= connection.prepareStatement(sql);
+            stmtUpdate.setString(1,user.email);
+            stmtUpdate.setString(2,user.first_name);
+            stmtUpdate.setString(3,user.last_name);
+            stmtUpdate.setString(4,user.street);
+            stmtUpdate.setInt(5,user.postal_code);
+            stmtUpdate.setString(6,user.city);
+            stmtUpdate.setString(7,user.password);
+            stmtUpdate.setInt(8,user.is_admin);
+            stmtUpdate.setInt(9,user.ID);
+            n = stmtUpdate.executeUpdate();
+            stmtUpdate.close();
+        } catch(SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error in adminUpdateUser: " + sql + " Exception: " + e);
+        }
+        return n;
+    }
+
     public static int deleteUser(Connection connection, Integer id) {
         String sql ="DELETE FROM Accounts WHERE ID = ?";
         System.out.println("deleteUser: " + sql);
