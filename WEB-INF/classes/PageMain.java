@@ -20,10 +20,20 @@ public class PageMain extends HttpServlet {
         toClient.println(Utils.header("Start"));
 
         Integer userId = Integer.parseInt(req.getParameter("userId"));
+        String userIdStr = req.getParameter("userId");
+        UserData myUser = UserData.getUser(connection, userIdStr);
 
         toClient.println("<div class='header'>");
         toClient.println("<div class='header-title'>DKL Bookstore</div>");
-        toClient.println("<div><a style='padding-right:15px' href='Account?userId="+userId+"'>Account</a></div>");
+        toClient.println("<div><a style='padding-right:15px' href='Account?userId="+userId+"'>Account</a>");
+        
+        if(myUser.is_admin == 1){ // only appears if you are an admin
+            
+            toClient.println("<a style='padding-right:15px' href='Admin'>Admin</a>");
+
+        }
+
+        toClient.println("<a href='/''>Sign Out</a></div>");
         toClient.println("</div>");
 
         toClient.println("<div class='body'>");

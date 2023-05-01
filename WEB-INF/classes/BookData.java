@@ -85,6 +85,27 @@ public class BookData {
         return null;
     }
 
+    public static Integer buyBook(Connection connection, Integer bookId) {
+        BookData myBook = getBook(connection, bookId);
+        Integer newStock = myBook.stock - 1;
+        String sql = "UPDATE Books SET stock = ?";
+        System.out.println("buyBook: " + sql);
+        int n = 0;
+        try {
+            PreparedStatement stmtUpdate=connection.prepareStatement(sql);
+            stmtUpdate.setInt(1, newStock);
+            n = stmtUpdate.executeUpdate();
+            stmtUpdate.close();
+
+        } catch(SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error in getBookList: " + sql + " Exception: " + e);
+        }
+        return n;
+    }
+
+    
+
 
     public static Vector<BookData> getLatestBooks(Connection connection) {
         Vector<BookData> vec = new Vector<BookData>();
@@ -542,7 +563,7 @@ public class BookData {
 
             }else if(genre.equals("")){ // author only
 
-                Vector<BookData> bookList = BookData.getBySearch(connection, "'%" + author_or_title + "%'"); 
+                Vector<BookData> bookList = BookData.getBySearch(connection, author_or_title); 
                 return bookList;
 
             }else{

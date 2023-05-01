@@ -29,6 +29,7 @@ public class BuyBook extends HttpServlet {
                 ""
             );
         int n = ReviewData.addReview(connection, review);
+        int x = BookData.buyBook(connection, bookId);
         res.sendRedirect("Account?userId=" + userId.toString());
     }
 }
