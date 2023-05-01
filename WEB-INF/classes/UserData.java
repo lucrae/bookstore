@@ -143,6 +143,24 @@ public class UserData {
         return n;
     }
 
+    public static int deleteUser(Connection connection, Integer id) {
+        String sql ="DELETE FROM Accounts WHERE ID = ?";
+        System.out.println("deleteUser: " + sql);
+        System.out.println("id value " + id);
+        int n = 0;
+        // UserData user = UserData.getUser(connection, id);
+        try {
+            PreparedStatement stmtUpdate= connection.prepareStatement(sql);
+            stmtUpdate.setInt(1,id);
+            n = stmtUpdate.executeUpdate();
+            stmtUpdate.close();
+        } catch(SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error in deleteUser: " + sql + " Exception: " + e);
+        }
+        return n;
+    }
+
     public static int registerUser(Connection connection, UserData user) {
         String sql ="INSERT INTO Accounts (ID, email, first_name, last_name, street, postal_code, city, password, is_admin)"
             + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";

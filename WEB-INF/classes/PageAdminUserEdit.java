@@ -29,7 +29,7 @@ public class PageAdminUserEdit extends HttpServlet {
         UserData user = UserData.getUser(connection, idStr);
 
         toClient.println("<tr><td>Id</td>");
-        toClient.println("<td><input name='ID' value='" + user.ID + "'></td></tr>");
+        toClient.println("<td><input id='ID' name='ID' value='" + user.ID + "'></td></tr>");
         toClient.println("<tr><td>Email</td>");
         toClient.println("<td><input name='email' value='" + user.email + "'></td></tr>");
         toClient.println("<tr><td>First name</td>");
@@ -53,6 +53,8 @@ public class PageAdminUserEdit extends HttpServlet {
         toClient.println("</table>");
         toClient.println("<input type='submit' value='Update user'>");
         toClient.println("</form>");
+        toClient.println("<br>");
+        toClient.println("<a href='UserDelete?id=" + user.ID + "'>Delete user</a>");
         toClient.println("</div>");
 
         toClient.println(Utils.footer());

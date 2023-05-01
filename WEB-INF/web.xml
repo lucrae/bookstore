@@ -11,6 +11,16 @@
     </servlet>
 
     <servlet>
+        <servlet-name>BookUpdate</servlet-name>
+        <servlet-class>BookUpdate</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>BookAdd</servlet-name>
+        <servlet-class>BookAdd</servlet-class>
+    </servlet>
+
+    <servlet>
         <servlet-name>UserList</servlet-name>
         <servlet-class>UserList</servlet-class>
     </servlet>
@@ -23,6 +33,11 @@
     <servlet>
         <servlet-name>UserUpdate</servlet-name>
         <servlet-class>UserUpdate</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>UserDelete</servlet-name>
+        <servlet-class>UserDelete</servlet-class>
     </servlet>
 
     <servlet>
@@ -65,6 +80,11 @@
     <servlet>
         <servlet-name>PageAdminBooks</servlet-name>
         <servlet-class>PageAdminBooks</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>PageAdminBookAdd</servlet-name>
+        <servlet-class>PageAdminBookAdd</servlet-class>
     </servlet>
 
     <servlet>
@@ -137,6 +157,16 @@
     </servlet-mapping>
 
     <servlet-mapping>
+        <servlet-name>BookUpdate</servlet-name>
+        <url-pattern>/BookUpdate</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>BookAdd</servlet-name>
+        <url-pattern>/BookAdd</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
         <servlet-name>UserList</servlet-name>
         <url-pattern>/UserList</url-pattern>
     </servlet-mapping>
@@ -149,6 +179,11 @@
     <servlet-mapping>
         <servlet-name>UserUpdate</servlet-name>
         <url-pattern>/UserUpdate</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>UserDelete</servlet-name>
+        <url-pattern>/UserDelete</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
@@ -192,6 +227,11 @@
     <servlet-mapping>
         <servlet-name>PageAdminBooks</servlet-name>
         <url-pattern>/AdminBooks</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>PageAdminBookAdd</servlet-name>
+        <url-pattern>/AdminAddBook</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
