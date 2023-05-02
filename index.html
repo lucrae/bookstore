@@ -1,4 +1,18 @@
 <html><head></head><body><p></p>
+
+    <h4>We recommend you to start here: <a href='Start'>Start Page</a></h4>
+
+    <table border="1">
+        <tr>
+            <td colspan='3'>Existing User</td>
+        </tr>
+        <tr>
+            <td>email: lucien@gmail.com</td>
+            <td>password: secret</td>
+            <td>Is Admin</td>
+        </tr>
+    </table>
+    <br><br><br>
     
     <table border="1" style="width: 700px;">
     <tbody>
@@ -58,6 +72,20 @@
         <td style="width: 87px;"></td>
         <td style="width: 87px;">Use:</td>
         <td style="width: 719px;" colspan="2">The user and admin both use this function in their respective webpages. For the users it is in the main page after logging in. For the admin it is visible when clicking on "Books".</td>
+    </tr>
+
+    <tr>
+        <td style="width: 806px;" colspan="3">buyBook</td>
+    </tr>
+    <tr>
+        <td style="width: 87px;"></td>
+        <td style="width: 87px;">Description:</td>
+        <td style="width: 719px;" colspan="2">This function reduces the stock buy one when a user buys a book</td>
+    </tr>
+    <tr>
+        <td style="width: 87px;"></td>
+        <td style="width: 87px;">Use:</td>
+        <td style="width: 719px;" colspan="2">Used in the Buy book page.</td>
     </tr>
 
     <tr>
@@ -259,7 +287,7 @@
 
     <tr>
         <td style="width: 87px;"></td>
-        <td style="width: 220px;"><a href = 'RegisterUser?'>RegisterUser.java</a></td>
+        <td style="width: 220px;">RegisterUser.java</td>
         <td style="width: 499px;">Makes sure that the email does not exist, and that the passwords coincides. If these are complied, a new user is made, otherwise it will give an error message and will redirect back to the Register Page.</td>
     </tr>
     <tr>
@@ -519,27 +547,27 @@
             <tr>
                 <td style="width: 87px;"></td>
                 <td style="width: 220px;"><a href='Admin'>PageAdmin.java</a></td>
-                <td style="width: 499px;">The main "home" page for the admin, here the admin can go on to either users or books by clicking on the different options.</td>
+                <td style="width: 499px;">This page is only accesible to admins. They have the option to add, edit, and delete from the database.</td>
             </tr>
             <tr>
                 <td style="width: 87px;"></td>
                 <td style="width: 220px;"><a href='AdminBooks'>PageAdminBooks.java</a></td>
-                <td style="width: 499px;">The admin page to view all the books. A list of all the books is displayed and the admin can search for a certain book</td>
+                <td style="width: 499px;">Admins can view and edit books from here.</td>
             </tr>
             <tr>
                 <td style="width: 87px;"></td>
                 <td style="width: 220px;"><a href='AdminAddBook'>PageAdminBookAdd.java</a></td>
-                <td style="width: 499px;">This lets the admin add new books to the database. This page is accesed from <a href='Admin'>PageAdmin.java</a> by clicking on "Add new book"</td>
+                <td style="width: 499px;">Allows the admin to add a book to the bookstore</td>
             </tr>
             <tr>
                 <td style="width: 87px;"></td>
                 <td style="width: 220px;"><a href='AdminBooksSearch?search=The'>PageAdminBooksSearch.java</a></td>
-                <td style="width: 499px;">After searching for a specific title this page shows the result of the search</td>
+                <td style="width: 499px;">Admin searches for a particular book (free text)</td>
             </tr>
             <tr>
                 <td style="width: 87px;"></td>
                 <td style="width: 220px;"><a href='AdminBookEdit?id=1'>PageAdminBookEdit.java</a></td>
-                <td style="width: 499px;">This pages is accessed by clicking on "Edit" in <a href='AdminBooks'>PageAdminBooks.java</a> in the far right of the rows in the table. Here the admin can update the information about the books, such as title etc.</td>
+                <td style="width: 499px;">Allows the admin to edit a particular book</td>
             </tr>
             <tr>
                 <td style="width: 87px;"></td>
@@ -554,42 +582,42 @@
             <tr>
                 <td style="width: 87px;"></td>
                 <td style="width: 220px;">AdminUserUpdate.java</td>
-                <td style="width: 499px;"></td>
+                <td style="width: 499px;">Executes the update</td>
             </tr>
             <tr>
                 <td style="width: 87px;"></td>
                 <td style="width: 220px;"><a href='AdminUsersSearch?search=dimperiodom@alumni.unav.es'>PageAdminUsersSearch.java</a></td>
-                <td style="width: 499px;">Similar to the books, the admin can search for a specific user and this page will display the results.</td>
+                <td style="width: 499px;">Page result when an admin searches for a particular user</td>
             </tr>
             <tr>
                 <td style="width: 87px;"></td>
                 <td style="width: 220px;"><a href='AdminUserEdit?id=3'>PageAdminUserEdit.java</a></td>
-                <td style="width: 499px;">In this page the admin can edit the information of the user. It is accessed when clicking on "Edit" in <a href='AdminUsers'>PageAdminUsers.java</a> on the right of the rows in the table.</td>
+                <td style="width: 499px;">The admin can edit any of the users, and has more funcionalities than the user end.</td>
             </tr>
             <tr>
                 <td style="width: 87px;"></td>
                 <td style="width: 220px;"><a href='AdminUsers'>PageAdminUsers.java</a></td>
-                <td style="width: 499px;">This page displays a list of all the users registered in the database. On the page there are options to search for users as well as edit the users information</td>
+                <td style="width: 499px;">The admin can access the database of all their users</td>
             </tr>
             <tr>
                 <td style="width: 87px;"></td>
-                <td style="width: 220px;">PageUserEdit.java</td>
-                <td style="width: 499px;"></td>
+                <td style="width: 220px;"><a href = 'Edit?userId=2'>PageUserEdit.java</a></td>
+                <td style="width: 499px;">Allows user to edit their information</td>
             </tr>
             <tr>
                 <td style="width: 87px;"></td>
                 <td style="width: 220px;">AdminUserUpdate.java</td>
-                <td style="width: 499px;"></td>
+                <td style="width: 499px;">Executes the update</td>
             </tr>
             <tr>
                 <td style="width: 87px;"></td>
                 <td style="width: 220px;">UserUpdate.java</td>
-                <td style="width: 499px;"></td>
+                <td style="width: 499px;">Executes the update from the User Edit area.</td>
             </tr>
             <tr>
                 <td style="width: 87px;"></td>
                 <td style="width: 220px;">UserDelete.java</td>
-                <td style="width: 499px;"></td>
+                <td style="width: 499px;">Calls on the function to be able to delete a user</td>
             </tr>
             <tr>
                 <td style="width: 87px;"></td>
