@@ -17,305 +17,103 @@
     <table border="1" style="width: 700px;">
     <tbody>
     <tr>
-    <td style="width: 806px;" colspan="3"><center>Djuliana Imperio</center></td>
+    <td style="width: 806px;" colspan="3"><h3><center>Djuliana Imperio (dimperiodom)</center></h3></td>
+    </tr>
+
+    <tr><td style="width: 806px;" colspan="3"><h3>1. Register Account</h3></td></tr>
+
+    <tr>
+      
+        <td style="width: 220px;"><a href='Register'>PageRegister.java</a></td>
+        <td style="width: 499px;" colspan="2">This is a form that the user can fill out when making a new account. All fields are required. On submit, it will go to RegisterUser. It has the option to unhide the password.</td>
+    </tr>
+
+
+    <tr>
+
+        <td style="width: 220px;"><a href='Register?status=error'>RegisterUser.java</a></td>
+        <td style="width: 499px;" colspan="2">Makes sure that the email does not exist, and that the passwords coincides. If these are complied, a new user is made, otherwise it will give an error message and will redirect back to the Register Page.</td>
+    </tr>
+
+    <tr><td style="width: 806px;" colspan="3"><h3>2. Log In (Existing Account)</h3></td></tr>
+    
+    <tr>
+        <td style="width: 220px;"><a href = 'Login'>PageLogin.java</a></td>
+        <td style="width: 499px;" colspan="2">The user can log in from this page, and it will be verified by the CheckLogin servlet.</td>
     </tr>
 
     <tr>
-        <td style="width: 806px;" colspan="3">registerUser</td>
+        <td style="width: 220px;"><a href = 'CheckLogin'>CheckLogin.java</a></td>
+        <td style="width: 499px;" colspan="2">If the email exists, and the password matches the email, it will proceed to the bookstore, otherwise an error will be given.</td>
+    </tr>
+
+    <tr><td style="width: 806px;" colspan="3"><h3>3. Browse the bookstore</h3></td></tr>
+    <tr>
+        <td style="width: 220px;"><a href='Main?userId=2'>PageMain.java</a></td>
+        <td style="width: 499px;" colspan="2">This is the main browsing web page, that allows the user to see what books are available in the bookstore. It allows the user to filter by author/title, genre, and order it by year published or average rating.</td>
     </tr>
     <tr>
-        <td style="width: 87px;"></td>
-        <td style="width: 87px;">Description:</td>
+        <td style="width: 220px;"><a href='FilterBooks?userId=2&author_or_title=&genre=&sortFilter='>FilterBooks.java</a></td>
+        <td style="width: 499px;" colspan="2">This is similar to the main page, except it displays the filter criteria that the user had previously made ath the bottom part.</td>
+    </tr>
+    
+    
+    <tr><td style="width: 806px;" colspan="3"><h3>Internal functions</h3></td></tr>
+    <tr>
+        <td style="width: 220px;">registerUser</td>
         <td style="width: 719px;" colspan="2">This function allows new users to create an account</td>
     </tr>
     <tr>
-        <td style="width: 87px;"></td>
-        <td style="width: 87px;">Use:</td>
-        <td style="width: 719px;" colspan="2">The user enters this page if they have no account and clicks on "Create an account".</td>
-    </tr>
-
-    <td style="width: 806px;" colspan="3">getUserByEmail</td>
+        <td style="width: 220px;">getUserByEmail</td>
+        <td style="width: 719px;" colspan="2">This functions gets the users information from the database based on the email that is registered</td>
     </tr>
     <tr>
-        <td style="width: 87px;"></td>
-    <td style="width: 87px;">Description:</td>
-    <td style="width: 719px;" colspan="2">This functions gets the users information from the database based on the email that is registered</td>
+        <td style="width: 220px;">loginUser</td>
+        <td style="width: 719px;" colspan="2">This function is to check wether the email matches the password that has been input when the user tries to log in</td>
     </tr>
     <tr>
-        <td style="width: 87px;"></td>
-    <td style="width: 87px;">Use:</td>
-    <td style="width: 719px;" colspan="2">This function is used when the user logs in, to see if the password matches the email.</td>
-    </tr>
-
-    <td style="width: 806px;" colspan="3">loginUser</td>
-    </tr>
-    <tr>
-        <td style="width: 87px;"></td>
-    <td style="width: 87px;">Description:</td>
-    <td style="width: 719px;" colspan="2">This function is to check wether the email matches the password that has been input when the user tries to log in</td>
-    </tr>
-    <tr>
-        <td style="width: 87px;"></td>
-    <td style="width: 87px;">Use:</td>
-    <td style="width: 719px;" colspan="2">This function determines weather the user can begin browsing or not, otherwise an error message will be received</td>
-    </tr>
-
-    <tr>
-        <td style="width: 806px;" colspan="3">getBookList</td>
-    </tr>
-    <tr>
-        <td style="width: 87px;"></td>
-        <td style="width: 87px;">Description:</td>
+        <td style="width: 220px;">getBookList</td>
         <td style="width: 719px;" colspan="2">This function gets all registered books from the database and displays them in a list.</td>
     </tr>
     <tr>
-        <td style="width: 87px;"></td>
-        <td style="width: 87px;">Use:</td>
-        <td style="width: 719px;" colspan="2">The user and admin both use this function in their respective webpages. For the users it is in the main page after logging in. For the admin it is visible when clicking on "Books".</td>
-    </tr>
-
-    <tr>
-        <td style="width: 806px;" colspan="3">buyBook</td>
-    </tr>
-    <tr>
-        <td style="width: 87px;"></td>
-        <td style="width: 87px;">Description:</td>
+        <td style="width: 220px;">buyBook</td>
         <td style="width: 719px;" colspan="2">This function reduces the stock buy one when a user buys a book</td>
     </tr>
     <tr>
-        <td style="width: 87px;"></td>
-        <td style="width: 87px;">Use:</td>
-        <td style="width: 719px;" colspan="2">Used in the Buy book page.</td>
+        <td style="width: 220px;">getLatestBooks</td>
+        <td style="width: 719px;" colspan="2">This function gets the latest books registered in the database and displays them to the user</td>
     </tr>
 
     <tr>
-        <td style="width: 806px;" colspan="3">getLatestBooks</td>
-    </tr>
-    <tr>
-        <td style="width: 87px;"></td>
-        <td style="width: 87px;">Description:</td>
-        <td style="width: 719px;" colspan="2">This function gets the latest books registered in the database and displays them to the user.</td>
-    </tr>
-    <tr>
-        <td style="width: 87px;"></td>
-        <td style="width: 87px;">Use:</td>
-        <td style="width: 719px;" colspan="2">The users can view this in the main page after logging in.</td>
-    </tr>
-
-    <tr>
-        <td style="width: 806px;" colspan="3">getByGenre</td>
-    </tr>
-    <tr>
-        <td style="width: 87px;"></td>
-        <td style="width: 87px;">Description:</td>
-        <td style="width: 719px;" colspan="2">Returns all book given a certain genre</td>
-    </tr>
-    <tr>
-        <td style="width: 87px;"></td>
-        <td style="width: 87px;">Use:</td>
-        <td style="width: 719px;" colspan="2">The user can use this function from the main page after logging in.</td>
-    </tr>
-
-    <tr>
-        <td style="width: 806px;" colspan="3">getBySearch</td>
-    </tr>
-    <tr>
-        <td style="width: 87px;"></td>
-        <td style="width: 87px;">Description:</td>
-        <td style="width: 719px;" colspan="2">This function allows the user to search the database for different books or author (free text)</td>
-    </tr>
-    <tr>
-        <td style="width: 87px;"></td>
-        <td style="width: 87px;">Use:</td>
-        <td style="width: 719px;" colspan="2">The user can use this function from the main page after logging in.</td>
-    </tr>
-
-    <tr>
-        <td style="width: 806px;" colspan="3">getByGenreAndSearch</td>
-    </tr>
-    <tr>
-        <td style="width: 87px;"></td>
-        <td style="width: 87px;">Description:</td>
-        <td style="width: 719px;" colspan="2">Returns all the books that comply a certain genre and search criteria</td>
-    </tr>
-    <tr>
-        <td style="width: 87px;"></td>
-        <td style="width: 87px;">Use:</td>
-        <td style="width: 719px;" colspan="2">The user can use this function from the main page after logging in.</td>
-    </tr>
-
-    <tr>
-        <td style="width: 806px;" colspan="3">getBySort</td>
-    </tr>
-    <tr>
-        <td style="width: 87px;"></td>
-        <td style="width: 87px;">Description:</td>
-        <td style="width: 719px;" colspan="2">Arranges the books based on the year published</td>
-    </tr>
-    <tr>
-        <td style="width: 87px;"></td>
-        <td style="width: 87px;">Use:</td>
-        <td style="width: 719px;" colspan="2">The user can use this function from the main page after logging in.</td>
-    </tr>
-
-    <tr>
-        <td style="width: 806px;" colspan="3">getByRatingDesc</td>
-    </tr>
-    <tr>
-        <td style="width: 87px;"></td>
-        <td style="width: 87px;">Description:</td>
-        <td style="width: 719px;" colspan="2">Arranges the books based on their average reviews</td>
-    </tr>
-    <tr>
-        <td style="width: 87px;"></td>
-        <td style="width: 87px;">Use:</td>
-        <td style="width: 719px;" colspan="2">The user can use this function from the main page after logging in.</td>
-    </tr>
-
-    <tr>
-        <td style="width: 806px;" colspan="3">getByAll</td>
-    </tr>
-    <tr>
-        <td style="width: 87px;"></td>
-        <td style="width: 87px;">Description:</td>
-        <td style="width: 719px;" colspan="2">This function allows the user to search the database for different books if all types of filters were applied, arranged by year</td>
-    </tr>
-    <tr>
-        <td style="width: 87px;"></td>
-        <td style="width: 87px;">Use:</td>
-        <td style="width: 719px;" colspan="2">The user can use this function from the main page after logging in.</td>
-    </tr>
-
-    <tr>
-        <td style="width: 806px;" colspan="3">getByGenreAndSort</td>
-    </tr>
-    <tr>
-        <td style="width: 87px;"></td>
-        <td style="width: 87px;">Description:</td>
-        <td style="width: 719px;" colspan="2">Filters the books by Genre and Year</td>
-    </tr>
-    <tr>
-        <td style="width: 87px;"></td>
-        <td style="width: 87px;">Use:</td>
-        <td style="width: 719px;" colspan="2">The user can use this function from the main page after logging in.</td>
-    </tr>
-
-    <tr>
-        <td style="width: 806px;" colspan="3">getBySearchAndSort</td>
-    </tr>
-    <tr>
-        <td style="width: 87px;"></td>
-        <td style="width: 87px;">Description:</td>
-        <td style="width: 719px;" colspan="2">Filters the books based on search criteria (author or title), and is sorted by year</td>
-    </tr>
-    <tr>
-        <td style="width: 87px;"></td>
-        <td style="width: 87px;">Use:</td>
-        <td style="width: 719px;" colspan="2">The user can use this function from the main page after logging in.</td>
-    </tr>
-
-    <tr>
-        <td style="width: 806px;" colspan="3">getByGenreAndRating</td>
-    </tr>
-    <tr>
-        <td style="width: 87px;"></td>
-        <td style="width: 87px;">Description:</td>
-        <td style="width: 719px;" colspan="2">Filters books by genre, and orders it by their average rating</td>
-    </tr>
-    <tr>
-        <td style="width: 87px;"></td>
-        <td style="width: 87px;">Use:</td>
-        <td style="width: 719px;" colspan="2">The user can use this function from the main page after logging in.</td>
-    </tr>
-
-    <tr>
-        <td style="width: 806px;" colspan="3">getBySearchAndRating</td>
-    </tr>
-    <tr>
-        <td style="width: 87px;"></td>
-        <td style="width: 87px;">Description:</td>
-        <td style="width: 719px;" colspan="2">Filters by search criteria (author or title), and arranged by average rating</td>
-    </tr>
-    <tr>
-        <td style="width: 87px;"></td>
-        <td style="width: 87px;">Use:</td>
-        <td style="width: 719px;" colspan="2">The user can use this function from the main page after logging in.</td>
-    </tr>
-
-    <tr>
-        <td style="width: 806px;" colspan="3">getByAllRating</td>
-    </tr>
-    <tr>
-        <td style="width: 87px;"></td>
-        <td style="width: 87px;">Description:</td>
-        <td style="width: 719px;" colspan="2">This function allows the user to search the database for different books if all types of filters were applied, arranged by average rating.</td>
-    </tr>
-    <tr>
-        <td style="width: 87px;"></td>
-        <td style="width: 87px;">Use:</td>
-        <td style="width: 719px;" colspan="2">The user can use this function from the main page after logging in.</td>
-    </tr>
-
-    <tr>
-        <td style="width: 806px;" colspan="3">filterCriteria</td>
-    </tr>
-    <tr>
-        <td style="width: 87px;"></td>
-        <td style="width: 87px;">Description:</td>
-        <td style="width: 719px;" colspan="2">This function calls the proper function (sql query) based on the user input, and returns the same set of books that the called on function also returned. It basically redirects which function to call.</td>
-    </tr>
-    <tr>
-        <td style="width: 87px;"></td>
-        <td style="width: 87px;">Use:</td>
-        <td style="width: 719px;" colspan="2">The user can use this function from the main page after logging in.</td>
-    </tr>
-
-    <tr>
-    <td style="width: 806px;" colspan="3">getBookRating</td>
-    </tr>
-    <tr>
-        <td style="width: 87px;"></td>
-        <td style="width: 87px;">Description:</td>
+        <td style="width: 220px;">getBookRating</td>
         <td style="width: 719px;" colspan="2">Given a book, this returns the average of all the ratings made for this book</td>
     </tr>
     <tr>
-        <td style="width: 87px;"></td>
-        <td style="width: 87px;">Use:</td>
-        <td style="width: 719px;" colspan="2">This information is used when book information is displayed.</td>
+        <td style="width: 220px;">filterCriteria</td>
+        <td style="width: 719px;" colspan="2">This function calls the proper function (sql query) based on the user input, and returns the same set of books that the called on function also returned. It basically redirects which function to call:
+            <ul>
+                <li>getBySearch</li>
+                <li>getByGenre</li>
+                <li>getBySort</li>
+                <li>getByRatingDesc</li>
+                <li>getByGenreAndSearch</li>
+                <li>getByGenreAndSort</li>
+                <li>getBySearchAndSort</li>
+                <li>getByGenreAndRating</li>
+                <li>getBySearchAndRating</li>
+                <li>getByAll</li>
+                <li>getByAllRating</li>
+            </ul></td>
     </tr>
 
+       
+    </tr>
 
-    <tr>
-        <td style="width: 87px;"></td>
-        <td style="width: 220px;">RegisterUser.java</td>
-        <td style="width: 499px;">Makes sure that the email does not exist, and that the passwords coincides. If these are complied, a new user is made, otherwise it will give an error message and will redirect back to the Register Page.</td>
-    </tr>
-    <tr>
-        <td style="width: 87px;"></td>
-        <td style="width: 220px;"><a href='Register'>PageRegister.java</a></td>
-        <td style="width: 499px;">This is a form that the user can fill out when making a new account. All fields are required. On submit, it will go to RegisterUser.</td>
-    </tr>
-    <tr>
-        <td style="width: 87px;"></td>
-        <td style="width: 220px;"><a href = 'Login'>PageLogin.java</a></td>
-        <td style="width: 499px;">The user can log in from this page, and it will be verified by the CheckLogin servlet.</td>
-    </tr>
-    <tr>
-        <td style="width: 87px;"></td>
-        <td style="width: 220px;"><a href='Main?userId=2'>PageMain.java</a></td>
-        <td style="width: 499px;">This is the main browsing web page, that allows the user to see what books are available in the bookstore. It allows the user to filter by author/title, genre, and order it by year published or average rating.</td>
-    </tr>
-    <tr>
-        <td style="width: 87px;"></td>
-        <td style="width: 220px;"><a href='FilterBooks?userId=2&author_or_title=&genre=&sortFilter='>FilterBooks.java</a></td>
-        <td style="width: 499px;">This is similar to the main page, except it displays the filter criteria that the user had previously made ath the bottom part.</td>
-    </tr>
-    <tr>
-        <td style="width: 87px;"></td>
-        <td style="width: 220px;"><a href = 'CheckLogin'>CheckLogin.java</a></td>
-        <td style="width: 499px;">If the email exists, and the password matches the email, it will proceed to the bookstore, otherwise an error will be given.</td>
-    </tr>
-    
+   
+   
+
+   
+   
 
     
     </tbody>
@@ -325,94 +123,64 @@
     <table border="1" style="width: 700px;">
         <tbody>
         <tr>
-        <td style="width: 806px;" colspan="3"><center>Lucien Rae Gentil</center></td>
-        </tr>
-        <tr>
-        <td style="width: 806px;" colspan="3">getReviews</td>
-        </tr>
-        <tr>
-            <td style="width: 87px;"></td>
-        <td style="width: 87px;">Description:</td>
-        <td style="width: 719px;" colspan="2">This return all the reviews of a certain book</td>
-        </tr>
-        <tr>
-            <td style="width: 87px;"></td>
-        <td style="width: 87px;">Use:</td>
-        <td style="width: 719px;" colspan="2">Used in the Book page, which is accessible when you press a book from latest releases or if you click on a book form the main browsing web page</td>
-        </tr>
-        
-        
-        <td style="width: 806px;" colspan="3">addReview</td>
-        </tr>
-        <tr>
-            <td style="width: 87px;"></td>
-        <td style="width: 87px;">Description:</td>
-        <td style="width: 719px;" colspan="2">Allows a user to create a new review for a book</td>
-        </tr>
-        <tr>
-            <td style="width: 87px;"></td>
-        <td style="width: 87px;">Use:</td>
-        <td style="width: 719px;" colspan="2">User can do this in the Account/Setting page</td>
+        <td style="width: 806px;" colspan="3"><h3><center>Lucien Rae Gentil (lgentilgent)</center></h3></td>
         </tr>
 
-
-        <td style="width: 806px;" colspan="3">getUserReviews</td>
-        </tr>
+        <tr><td style="width: 806px;" colspan="3"><h3>1. Start Page</h3></td></tr>
         <tr>
-            <td style="width: 87px;"></td>
-        <td style="width: 87px;">Description:</td>
-        <td style="width: 719px;" colspan="2">This function allows the user to view previous reviews made by them.</td>
-        </tr>
-        <tr>
-            <td style="width: 87px;"></td>
-        <td style="width: 87px;">Use:</td>
-        <td style="width: 719px;" colspan="2">The user sees these reviews when in the account page and viewing books previously purchased by the user.</td>
-        </tr>
-
-        <td style="width: 806px;" colspan="3">updateReview</td>
-        </tr>
-        <tr>
-            <td style="width: 87px;"></td>
-        <td style="width: 87px;">Description:</td>
-        <td style="width: 719px;" colspan="2">This function allows the user to edit previous reviews made by them.</td>
-        </tr>
-        <tr>
-            <td style="width: 87px;"></td>
-        <td style="width: 87px;">Use:</td>
-        <td style="width: 719px;" colspan="2">The user can edit reviews when viewing previous purchases made by them.</td>
-        </tr>
-
-        <tr>
-            <td style="width: 87px;"></td>
-            <td style="width: 220px;"><a href='Account?userId=2'>PageAccount.java</a></td>
-            <td style="width: 499px;">The user can see their history of purchased books here, with an option to view their reviews and edit/update them. </td>
-        </tr>
-        <tr>
-            <td style="width: 87px;"></td>
-            <td style="width: 220px;">BuyBook.java</td>
-            <td style="width: 499px;">After entering card details, this updates the database and history for the user, books, and reviews</td>
-        </tr>
-        <tr>
-            <td style="width: 87px;"></td>
-            <td style="width: 220px;"><a href='Book?bookId=1&userId=2'>PageBook.java</a></td>
-            <td style="width: 499px;">From the main browsing web page, when you press and of the Lates Releases, or the titles of the filtered books, you are redirected to this page that shows more details of the particular book, including all the reviews.</td>
-        </tr>
-        <tr>
-            <td style="width: 87px;"></td>
-            <td style="width: 220px;"><a href = 'Buy?bookId=1&userId=2'>PageBuy.java</a></td>
-            <td style="width: 499px;">When you decide to click <i>Buy</i> you are redirected to this page, which asks you for your card details</td>
-        </tr>
-        <tr>
-            <td style="width: 87px;"></td>
             <td style="width: 220px;"><a href='Start'>PageStart.java</a></td>
-            <td style="width: 499px;">The official start of the Bookstore. Latest releases are displayed, and to access more you must register or login</td>
+            <td style="width: 499px;" colspan="2">The official start of the Bookstore. Latest releases are displayed, and to access more you must register or login</td>
+        </tr>
+        
+        <tr><td style="width: 806px;" colspan="3"><h3>2. View Book Details and All Reviews</h3></td></tr>
+        <tr>
+            <td style="width: 220px;"><a href='Book?bookId=1&userId=2'>PageBook.java</a></td>
+            <td style="width: 499px;" colspan=2>From the main browsing web page, when you press and of the Lates Releases, or the titles of the filtered books, you are redirected to this page that shows more details of the particular book, including all the reviews.</td>
+        </tr>
+        <tr><td style="width: 806px;" colspan="3"><h3>3. Purchase a Book</h3></td></tr>
+        <tr>
+            <td style="width: 220px;"><a href = 'Buy?bookId=1&userId=2'>PageBuy.java</a></td>
+            <td style="width: 499px;" colspan="2">When you decide to click <i>Buy</i> you are redirected to this page, which asks you for your card details</td>
+        </tr>
+        <tr>
+            <td style="width: 220px;">BuyBook.java</td>
+            <td style="width: 499px;" colspan="2">After entering card details, this updates the database and history for the user, books, and reviews</td>
+        </tr>
+        <tr><td style="width: 806px;" colspan="3"><h3>4. Add and Update Reviews</h3></td></tr>
+        <tr>
+            <td style="width: 220px;"><a href='Account?userId=2'>PageAccount.java</a></td>
+            <td style="width: 499px;" colspan="2">The user can see their history of purchased books here, with an option to view their reviews and edit/update them. </td>
+        </tr>
+        <tr>
+            <td style="width: 220px;">ReviewUpdate.java</td>
+            <td style="width: 499px;" colspan="2">From the Accounts/Settings page, this allows the user to edit their previous reviews in case they change their mind</td>
         </tr>
 
+       
+        <tr><td style="width: 806px;" colspan="3"><h3>Internal functions</h3></td></tr>
+        
         <tr>
-            <td style="width: 87px;"></td>
-            <td style="width: 220px;">ReviewUpdate.java</td>
-            <td style="width: 499px;">From the Accounts/Settings page, this allows the user to edit their previous reviews in case they change their mind</td>
+            <td style="width: 220px;">getReviews</td>
+            <td style="width: 719px;" colspan="2">This return all the reviews of a certain book</td>
         </tr>
+        <tr>
+            <td style="width: 220px;">addReview</td>
+            <td style="width: 719px;" colspan="2">Allows a user to create a new review for a book</td>
+        </tr>
+        <tr>
+            <td style="width: 220px;">getUserReviews</td>
+            <td style="width: 719px;" colspan="2">This function allows the user to view previous reviews made by them.</td>
+        </tr>
+        <tr>
+            <td style="width: 220px;">updateReview</td>
+            <td style="width: 719px;" colspan="2">This function allows the user to edit previous reviews made by them.</td>
+        </tr>
+
+
+        
+
+
+        
         
 
         
@@ -423,212 +191,118 @@
         <table border="1" style="width: 700px;">
             <tbody>
             <tr>
-            <td style="width: 806px;" colspan="3"><center>Kare Gothner</center></td>
-            </tr>
-            <tr>
-                <td style="width: 806px;" colspan="3">getUserList</td>
-            </tr>
-            <tr>
-                <td style="width: 87px;"></td>
-            <td style="width: 87px;">Description:</td>
-            <td style="width: 719px;" colspan="2">This function gets all the registered users in the database and displays them in a table</td>
-            </tr>
-            <tr>
-                <td style="width: 87px;"></td>
-            <td style="width: 87px;">Use:</td>
-            <td style="width: 719px;" colspan="2">The admin enters this page from the page with the list of books. When "Users" is pressed, the admin gets the option to edit information of the user.</td>
-            </tr>
-            
-            <td style="width: 806px;" colspan="3">getUser</td>
-            </tr>
-            <tr>
-                <td style="width: 87px;"></td>
-            <td style="width: 87px;">Description:</td>
-            <td style="width: 719px;" colspan="2">This function gets a single user from the database and displays the information</td>
-            </tr>
-            <tr>
-                <td style="width: 87px;"></td>
-            <td style="width: 87px;">Use:</td>
-            <td style="width: 719px;" colspan="2">The admin clicks edit and gets the information of the user and can edit the information.</td>
-            </tr>
-            
-            <td style="width: 806px;" colspan="3">getUserSearch</td>
-            </tr>
-            <tr>
-                <td style="width: 87px;"></td>
-            <td style="width: 87px;">Description:</td>
-            <td style="width: 719px;" colspan="2">This function gets users that are like that of what has been searched for</td>
-            </tr>
-            <tr>
-                <td style="width: 87px;"></td>
-            <td style="width: 87px;">Use:</td>
-            <td style="width: 719px;" colspan="2">The admin can search with text and will get back all the users that are similar to that of what has been searched for.</td>
+            <td style="width: 806px;" colspan="3"><h3><center>Kare Gothner (kgothner)</center></h3></td>
             </tr>
 
+            <tr><td style="width: 806px;" colspan="3"><h3>1. Admin Page</h3></td></tr>
             <tr>
-            <td style="width: 806px;" colspan="3">deleteUser</a></td>
-            </tr>
-            <tr>
-                <td style="width: 87px;"></td>
-            <td style="width: 87px;">Description:</td>
-            <td style="width: 719px;" colspan="2">This function allows the admin to delete users that are registered in the database</td>
-            </tr>
-            <tr>
-                <td style="width: 87px;"></td>
-            <td style="width: 87px;">Use:</td>
-            <td style="width: 719px;" colspan="2">The admin enters this page from the page with the list of users. When "Edit" is pressed, the admin gets the option to delete the user from the database.</td>
-            </tr>
-
-            <td style="width: 806px;" colspan="3">updateUser</td>
-            </tr>
-            <tr>
-                <td style="width: 87px;"></td>
-            <td style="width: 87px;">Description:</td>
-            <td style="width: 719px;" colspan="2">This function allows the user to edit their information in the database</td>
-            </tr>
-            <tr>
-            <td style="width: 87px;"></td>
-            <td style="width: 87px;">Use:</td>
-            <td style="width: 719px;" colspan="2">The user can do this in the "Settings" page. Where they see all the information available for them to change and are free to do so.</td>
-            </tr>
-
-            <td style="width: 806px;" colspan="3">adminUpdateUser</td>
-            </tr>
-            <tr>
-            <td style="width: 87px;"></td>
-            <td style="width: 87px;">Description:</td>
-            <td style="width: 719px;" colspan="2">This function allows the admin to edit users that are registered in the database</td>
-            </tr>
-            <tr>
-            <td style="width: 87px;"></td>
-            <td style="width: 87px;">Use:</td>
-            <td style="width: 719px;" colspan="2">The admin enters this page from the page with the list of users. When "Edit" is pressed, the admin gets the option to edit information of the user and then update the information in the database.</td>
-            </tr>
-
-            <td style="width: 806px;" colspan="3">addBook</td>
-            </tr>
-            <tr>
-            <td style="width: 87px;"></td>
-            <td style="width: 87px;">Description:</td>
-            <td style="width: 719px;" colspan="2">This function allows the admin to add new books to the database</td>
-            </tr>
-            <tr>
-            <td style="width: 87px;"></td>
-            <td style="width: 87px;">Use:</td>
-            <td style="width: 719px;" colspan="2">The admin enters this page from the page with the list of books. When "Add new book" is pressed, the admin can fill in information about a new book. Here some AJAX is implemented to get the cover image of the book using the ISBN.</td>
-            </tr>
-
-            <td style="width: 806px;" colspan="3">updateBook</td>
-            </tr>
-            <tr>
-            <td style="width: 87px;"></td>
-            <td style="width: 87px;">Description:</td>
-            <td style="width: 719px;" colspan="2">This function allows the admin to edit information of a book in the database</td>
-            </tr>
-            <tr>
-            <td style="width: 87px;"></td>
-            <td style="width: 87px;">Use:</td>
-            <td style="width: 719px;" colspan="2">The admin enters this page by clicking on "Edit" from the "Books" page where all the books are listed.</td>
-            </tr>
-            
-            <td style="width: 806px;" colspan="3">getBook</td>
-            </tr>
-            <tr>
-            <td style="width: 87px;"></td>
-            <td style="width: 87px;">Description:</td>
-            <td style="width: 719px;" colspan="2">This function allows the admin to edit information of a book.</td>
-            </tr>
-            <tr>
-            <td style="width: 87px;"></td>
-            <td style="width: 87px;">Use:</td>
-            <td style="width: 719px;" colspan="2">The admin enters this page from the page with the list of books. When "Edit" is pressed, the admin gets the option to edit information of the book.</td>
-            </tr>
-
-            <tr>
-                <td style="width: 87px;"></td>
                 <td style="width: 220px;"><a href='Admin'>PageAdmin.java</a></td>
-                <td style="width: 499px;">This page is only accesible to admins. They have the option to add, edit, and delete from the database.</td>
+                <td style="width: 499px;" colspan="2">This page is only accesible to admins. They have the option to add, edit, and delete from the database.</td>
             </tr>
+            <tr><td style="width: 806px;" colspan="3"><h3>2. View, search and edit all books</h3></td></tr>
             <tr>
-                <td style="width: 87px;"></td>
                 <td style="width: 220px;"><a href='AdminBooks'>PageAdminBooks.java</a></td>
-                <td style="width: 499px;">Admins can view and edit books from here.</td>
+                <td style="width: 499px;" colspan="2">Admins can view and edit books from here.</td>
             </tr>
             <tr>
-                <td style="width: 87px;"></td>
-                <td style="width: 220px;"><a href='AdminAddBook'>PageAdminBookAdd.java</a></td>
-                <td style="width: 499px;">Allows the admin to add a book to the bookstore</td>
-            </tr>
-            <tr>
-                <td style="width: 87px;"></td>
                 <td style="width: 220px;"><a href='AdminBooksSearch?search=The'>PageAdminBooksSearch.java</a></td>
-                <td style="width: 499px;">Admin searches for a particular book (free text)</td>
+                <td style="width: 499px;" colspan="2">Admin searches for a particular book (free text)</td>
             </tr>
             <tr>
-                <td style="width: 87px;"></td>
                 <td style="width: 220px;"><a href='AdminBookEdit?id=1'>PageAdminBookEdit.java</a></td>
-                <td style="width: 499px;">Allows the admin to edit a particular book</td>
+                <td style="width: 499px;" colspan="2">Allows the admin to edit a particular book</td>
             </tr>
             <tr>
-                <td style="width: 87px;"></td>
-                <td style="width: 220px;">BookUpdate.java</td>
-                <td style="width: 499px;"></td>
+                <td style="width: 220px;"><a href='AdminAddBook'>PageAdminBookAdd.java</a></td>
+                <td style="width: 499px;" colspan="2">Allows the admin to add a book to the bookstore</td>
             </tr>
             <tr>
-                <td style="width: 87px;"></td>
                 <td style="width: 220px;">BookAdd.java</td>
-                <td style="width: 499px;"></td>
+                <td style="width: 499px;" colspan="2">Executes adding the book</td>
+            </tr>
+              
+            <tr>
+                <td style="width: 220px;">BookUpdate.java</td>
+                <td style="width: 499px;" colspan>Executes book</td>
             </tr>
             <tr>
-                <td style="width: 87px;"></td>
-                <td style="width: 220px;">AdminUserUpdate.java</td>
-                <td style="width: 499px;">Executes the update</td>
-            </tr>
-            <tr>
-                <td style="width: 87px;"></td>
-                <td style="width: 220px;"><a href='AdminUsersSearch?search=dimperiodom@alumni.unav.es'>PageAdminUsersSearch.java</a></td>
-                <td style="width: 499px;">Page result when an admin searches for a particular user</td>
-            </tr>
-            <tr>
-                <td style="width: 87px;"></td>
-                <td style="width: 220px;"><a href='AdminUserEdit?id=3'>PageAdminUserEdit.java</a></td>
-                <td style="width: 499px;">The admin can edit any of the users, and has more funcionalities than the user end.</td>
-            </tr>
-            <tr>
-                <td style="width: 87px;"></td>
-                <td style="width: 220px;"><a href='AdminUsers'>PageAdminUsers.java</a></td>
-                <td style="width: 499px;">The admin can access the database of all their users</td>
-            </tr>
-            <tr>
-                <td style="width: 87px;"></td>
-                <td style="width: 220px;"><a href = 'Edit?userId=2'>PageUserEdit.java</a></td>
-                <td style="width: 499px;">Allows user to edit their information</td>
-            </tr>
-            <tr>
-                <td style="width: 87px;"></td>
-                <td style="width: 220px;">AdminUserUpdate.java</td>
-                <td style="width: 499px;">Executes the update</td>
-            </tr>
-            <tr>
-                <td style="width: 87px;"></td>
-                <td style="width: 220px;">UserUpdate.java</td>
-                <td style="width: 499px;">Executes the update from the User Edit area.</td>
-            </tr>
-            <tr>
-                <td style="width: 87px;"></td>
-                <td style="width: 220px;">UserDelete.java</td>
-                <td style="width: 499px;">Calls on the function to be able to delete a user</td>
-            </tr>
-            <tr>
-                <td style="width: 87px;"></td>
-                <td style="width: 220px;">UserList.java</td>
-                <td style="width: 499px;"></td>
-            </tr>
-            <tr>
-                <td style="width: 87px;"></td>
                 <td style="width: 220px;">getImage.js</td>
-                <td style="width: 499px;"></td>
+                <td style="width: 499px;">Javascript for getting book image</td>
             </tr>
+            <tr><td style="width: 806px;" colspan="3"><h3>3. View, search and edit all users (Admin and User end)</h3></td></tr>
+            <tr>
+                <td style="width: 220px;"><a href='AdminUsers'>PageAdminUsers.java</a></td>
+                <td style="width: 499px;" colspan="2">The admin can access the database of all their users</td>
+            </tr>
+            <tr>
+                <td style="width: 220px;"><a href='AdminUsersSearch?search=dimperiodom@alumni.unav.es'>PageAdminUsersSearch.java</a></td>
+                <td style="width: 499px;" colspan="2">Page result when an admin searches for a particular user</td>
+            </tr>
+            <tr>
+                <td style="width: 220px;"><a href = 'Edit?userId=2'>PageUserEdit.java</a></td>
+                <td style="width: 499px;" colspan="2">Page that allows user to edit their information</td>
+            </tr>
+            <tr>
+                <td style="width: 220px;"><a href='AdminUserEdit?id=3'>PageAdminUserEdit.java</a></td>
+                <td style="width: 499px;" colspan="2">The admin can edit any of the users, and has more funcionalities than the user end.</td>
+            </tr>
+
+            <tr>
+                <td style="width: 220px;">UserUpdate.java</td>
+                <td style="width: 499px;" colspan="2">Executes the update from the User Edit area.</td>
+            </tr>
+            <tr>
+                <td style="width: 220px;">UserDelete.java</td>
+                <td style="width: 499px;" colspan="2">Calls on the function to be able to delete a user</td>
+            </tr>
+            <tr>
+                <td style="width: 220px;">AdminUserUpdate.java</td>
+                <td style="width: 499px;" colspan="2">Executes the update</td>
+            </tr>
+            <tr>
+                <td style="width: 220px;">AdminUserUpdate.java</td>
+                <td style="width: 499px;" colspan="2">Executes the update</td>
+            </tr>
+            <tr>
+                <td style="width: 806px;" colspan="3"><h3>Internal Functions</h3></td>
+            </tr>
+            <tr>
+                <td style="width: 220px;">getUserList</td>
+                <td style="width: 719px;" colspan="2">This function gets all the registered users in the database and displays them in a table</td>
+            </tr>
+            <tr>
+                <td style="width: 220px;">getUser</td>
+                <td style="width: 719px;" colspan="2">This function gets a single user from the database and displays the information</td>
+            </tr>
+            <tr>
+                <td style="width: 220px;">getUserSearch</td>
+                <td style="width: 719px;" colspan="2">This function gets users that are like that of what has been searched for</td>
+            </tr>
+            <tr>
+                <td style="width: 220px;">deleteUser</td>
+                <td style="width: 719px;" colspan="2">This function allows the admin to delete users that are registered in the database</td>
+            </tr>
+            <tr>
+                <td style="width: 220px;">updateUser</td>
+                <td style="width: 719px;" colspan="2">This function allows the user to edit their information in the database</td>
+            </tr>
+            <tr>
+                <td style="width: 220px;">adminUpdateUser</td>
+                <td style="width: 719px;" colspan="2">This function allows the admin to edit users that are registered in the database</td>
+            </tr>
+            <tr>
+                <td style="width: 220px;">addBook</td>
+                <td style="width: 719px;" colspan="2">This function allows the admin to add new books to the database.  When "Add new book" is pressed, the admin can fill in information about a new book. Here some AJAX is implemented to get the cover image of the book using the ISBN.</td>
+            </tr>
+            <tr>
+                <td style="width: 220px;">updateBook</td>
+                <td style="width: 719px;" colspan="2">This function allows the admin to edit information of a book in the database</td>
+            </tr>
+            <tr>
+                <td style="width: 220px;">getBook</td>
+                <td style="width: 719px;" colspan="2">This function allows the admin to edit information of a book. The admin enters this page from the page with the list of books. When "Edit" is pressed, the admin gets the option to edit information of the book.</td>
+            </tr>
+
             
             </tbody>
             </table>

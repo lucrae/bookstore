@@ -44,7 +44,7 @@ public class ReviewData {
         return vec;
     }
 
-    public static Vector<ReviewData> getUserReviews(Connection connection, Integer userId) { // by book
+    public static Vector<ReviewData> getUserReviews(Connection connection, Integer userId) { // by user
         Vector<ReviewData> vec = new Vector<ReviewData>();
         String sql = "SELECT * FROM Reviews WHERE account_id=" + userId;
         System.out.println("getReviews: " + sql);

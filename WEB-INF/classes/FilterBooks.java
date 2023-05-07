@@ -23,11 +23,22 @@ public class FilterBooks extends HttpServlet {
         String author_or_title = req.getParameter("author_or_title");
         String sortFilter = req.getParameter("sortFilter");
         Integer userId = Integer.parseInt(req.getParameter("userId"));
+        String userIdStr = req.getParameter("userId");
+        UserData myUser = UserData.getUser(connection, userIdStr);
 
         Vector<BookData> resultFilter = BookData.filterCriteria(connection, author_or_title, genre, sortFilter);
 
-        toClient.println("<div class='header header-title'>DKL Bookstore</div>");
+      toClient.println("<div class='header'>");
+        toClient.println("<div class='header-title'>DKL Bookstore</div>");
+        toClient.println("<div><a style='padding-right:15px' href='Account?userId="+userId+"'>Account</a></div>");
+        
+        if(myUser.is_admin == 1){ // only appears if you are an admin
+            
+            toClient.println("<a style='padding-right:15px' href='Admin'>Admin</a>");
 
+        }
+
+        toClient.println("</div>");
         toClient.println("<div class='body'>");
         toClient.println("<h2>Latest releases</h2>");
         toClient.println("<div class='cover-row'>");

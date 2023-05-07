@@ -58,7 +58,7 @@ public class BookData {
 
     public static BookData getBook(Connection connection, Integer bookId) {
         String sql = "Select * FROM Books WHERE id=" + bookId;
-        System.out.println("getBookList: " + sql);
+        System.out.println("getBook: " + sql);
         try {
             Statement statement=connection.createStatement();
             ResultSet result = statement.executeQuery(sql);
@@ -80,7 +80,7 @@ public class BookData {
 
         } catch(SQLException e) {
             e.printStackTrace();
-            System.out.println("Error in getBookList: " + sql + " Exception: " + e);
+            System.out.println("Error in getBook: " + sql + " Exception: " + e);
         }
         return null;
     }
@@ -88,18 +88,19 @@ public class BookData {
     public static Integer buyBook(Connection connection, Integer bookId) {
         BookData myBook = getBook(connection, bookId);
         Integer newStock = myBook.stock - 1;
-        String sql = "UPDATE Books SET stock = ?";
+        String sql = "UPDATE Books SET stock = ? WHERE ID = ?";
         System.out.println("buyBook: " + sql);
         int n = 0;
         try {
             PreparedStatement stmtUpdate=connection.prepareStatement(sql);
             stmtUpdate.setInt(1, newStock);
+            stmtUpdate.setInt(2, bookId);
             n = stmtUpdate.executeUpdate();
             stmtUpdate.close();
 
         } catch(SQLException e) {
             e.printStackTrace();
-            System.out.println("Error in getBookList: " + sql + " Exception: " + e);
+            System.out.println("Error in buyBook: " + sql + " Exception: " + e);
         }
         return n;
     }
